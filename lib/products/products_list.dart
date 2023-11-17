@@ -15,8 +15,12 @@ class _ProductsListState extends State<ProductsList> {
     return ExpandableTable(
       firstHeaderCell: ExpandableTableCell(child: const SizedBox()),
       headers: [for (final String header in _headers) ExpandableTableHeader(cell: ExpandableTableCell(child: Text(header)))],
-      rows: <ExpandableTableRow>[for (final Map<String,dynamic> in _headers)
-        ExpandableTableRow(firstCell: ExpandableTableCell(child: SizedBox(width: 20)), cells: [ExpandableTableCell(child: SizedBox(width: 20))])
+      rows: <ExpandableTableRow>[
+        for (final Map<String, dynamic> product in widget.products)
+          ExpandableTableRow(
+            firstCell: ExpandableTableCell(child: Text(widget.products.indexOf(product).toString())),
+            cells: <ExpandableTableCell>[for (final dynamic value in product.values) ExpandableTableCell(child: Text(value.toString()))],
+          )
       ],
     );
   }

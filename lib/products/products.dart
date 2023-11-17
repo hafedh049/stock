@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +27,10 @@ class _ProductsContainerState extends State<ProductsContainer> {
     _tagsController.dispose();
     _kFocus.dispose();
     super.dispose();
+  }
+
+  List _loadProducts() {
+    return json.encode((await rootBundle.loadString("assets/test.json")));
   }
 
   @override
@@ -141,7 +147,14 @@ class _ProductsContainerState extends State<ProductsContainer> {
                       },
                     ),
                     const SizedBox(height: 10),
-                    Expanded(child: ProductsList(products: [])),
+                    Expanded(
+                      child: FutureBuilder<Object>(
+                        future: _loadProducts(),
+                        builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+                          return ProductsList(products: []);
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),

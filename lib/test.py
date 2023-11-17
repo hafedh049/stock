@@ -9,7 +9,6 @@ l = []
 
 with open("test.json", "w") as fp:
     for _ in range(100):  # Generating 10 fake products
-        print(_)
         product_id = ""
 
         while True:
@@ -85,4 +84,3 @@ with open("test.json", "w") as fp:
         )
 
     dump(l, fp)
-    print([key.replace("_"," ").upper() for key in l[0].keys()])
