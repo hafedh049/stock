@@ -13,20 +13,12 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AdaptiveTheme(
-      initial: AdaptiveThemeMode.dark,
-      dark: darkTheme,
-      light: lightTheme,
-      builder: (ThemeData light, ThemeData dark) {
-        return ResponsiveSizer(
-          builder: (BuildContext context, Orientation orientation, ScreenType deviceType) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: light,
-              darkTheme: dark,
-              home: const ProductsContainer(),
-            );
-          },
+    return ResponsiveSizer(
+      builder: (BuildContext context, Orientation orientation, ScreenType deviceType) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: lightTheme,
+          home: const ProductsContainer(),
         );
       },
     );
