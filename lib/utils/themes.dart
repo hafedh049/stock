@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:stock/utils/colors.dart';
 
 final darkTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Colors.blueGrey.shade800,
   hintColor: Colors.blue,
-  scaffoldBackgroundColor: Colors.blueGrey.shade900,
+  scaffoldBackgroundColor: bgColor,
   textTheme: const TextTheme(
     displayLarge: TextStyle(color: Colors.white),
     bodyLarge: TextStyle(color: Colors.white70),
