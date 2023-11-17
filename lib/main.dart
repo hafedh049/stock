@@ -1,6 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:stock/products/products.dart';
 import 'package:stock/utils/themes.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
-      initial: AdaptiveThemeMode.dark,
+      initial: AdaptiveThemeMode.light,
       dark: darkTheme,
       light: lightTheme,
       builder: (ThemeData light, ThemeData dark) {
@@ -23,7 +24,7 @@ class Main extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: light,
               darkTheme: dark,
-              home: ,
+              home: const ProductsContainer(),
             );
           },
         );
