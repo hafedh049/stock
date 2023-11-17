@@ -20,6 +20,7 @@ dependencies:
   flutter_animated_button: ^2.0.3
   animated_button: ^0.2.0
   font_awesome_flutter: ^10.6.0
+  textfield_tags: ^2.0.2
 
 dev_dependencies:
   flutter_test:
