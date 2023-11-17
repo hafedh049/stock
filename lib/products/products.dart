@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:stock/models/product_model.dart';
 import 'package:stock/products/products_list.dart';
 import 'package:stock/utils/colors.dart';
 import 'package:textfield_tags/textfield_tags.dart';
@@ -29,9 +30,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
     super.dispose();
   }
 
-  List _loadProducts() {
-    return json.encode((await rootBundle.loadString("assets/test.json")));
-  }
+  Future<List<Product>> _loadProducts() async => json.decode((await rootBundle.loadString("assets/test.json"))).map((dynamic e) => Product.fromJson(e)).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -148,10 +147,16 @@ class _ProductsContainerState extends State<ProductsContainer> {
                     ),
                     const SizedBox(height: 10),
                     Expanded(
-                      child: FutureBuilder<Object>(
+                      child: FutureBuilder<List<Product>>(
                         future: _loadProducts(),
-                        builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
-                          return ProductsList(products: []);
+                        builder: (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
+                          if (snapshot.hasData) {
+                            return ProductsList(products: snapshot.data!);
+                          } else if (snapshot.connectionState == ConnectionState.waiting) {
+                            return const Center(child: CircularProgressIndicator());
+                          } else {
+                            return Center(child: Text(snapshot.error.toString()));
+                          }
                         },
                       ),
                     ),

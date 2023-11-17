@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_table/flutter_expandable_table.dart';
+import 'package:stock/models/product_model.dart';
 
 class ProductsList extends StatefulWidget {
   const ProductsList({super.key, required this.products});
-  final List<Map<String, dynamic>> products;
+  final List<Product> products;
   @override
   State<ProductsList> createState() => _ProductsListState();
 }
@@ -16,10 +17,10 @@ class _ProductsListState extends State<ProductsList> {
       firstHeaderCell: ExpandableTableCell(child: const SizedBox()),
       headers: [for (final String header in _headers) ExpandableTableHeader(cell: ExpandableTableCell(child: Text(header)))],
       rows: <ExpandableTableRow>[
-        for (final Map<String, dynamic> product in widget.products)
+        for (final Product product in widget.products)
           ExpandableTableRow(
             firstCell: ExpandableTableCell(child: Text(widget.products.indexOf(product).toString())),
-            cells: <ExpandableTableCell>[for (final dynamic value in product.values) ExpandableTableCell(child: Text(value.toString()))],
+            cells: <ExpandableTableCell>[for (final List<dynamic> value in product.values) ExpandableTableCell(child: Text(value.toString()))],
           )
       ],
     );
