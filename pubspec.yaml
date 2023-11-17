@@ -16,6 +16,8 @@ dependencies:
   flutter_animate: ^4.2.0+1
   adaptive_theme: ^3.4.1
   sizer: ^2.0.15
+  comment_tree: ^0.3.0
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:
