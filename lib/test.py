@@ -75,7 +75,7 @@ with open("test.json", "w") as fp:
                 "product_sell_price": product_sell_price,
                 "product_picture": product_picture,
                 "seuil": OFSNotification,
-                "product_qunatity": product_qunatity,
+                "product_quantity": product_qunatity,
                 "product_discount": discount,
                 "product_status": status,
                 "product_date": entry_date,
@@ -85,3 +85,4 @@ with open("test.json", "w") as fp:
         )
 
     dump(l, fp)
+    print([key.replace("_"," ").upper() for key in l[0].keys()])

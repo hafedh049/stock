@@ -141,7 +141,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
                       },
                     ),
                     const SizedBox(height: 10),
-                    Expanded(child: ProductsList()),
+                    Expanded(child: ProductsList(products: [])),
                   ],
                 ),
               ),
