@@ -32,6 +32,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
                       Text('Products • List', style: TextStyle(fontSize: 12.sp)),
                     ],
                   ),
+                  const Spacer(),
                 ],
               ),
             ],
