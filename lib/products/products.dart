@@ -2,7 +2,6 @@ import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:stock/utils/colors.dart';
 import 'package:textfield_tags/textfield_tags.dart';
@@ -17,14 +16,12 @@ class ProductsContainer extends StatefulWidget {
 class _ProductsContainerState extends State<ProductsContainer> {
   final TextEditingController _productFilter = TextEditingController();
   final TextfieldTagsController _tagsController = TextfieldTagsController();
-  final FocusNode _tagsFocus = FocusNode();
   final FocusNode _kFocus = FocusNode();
 
   @override
   void dispose() {
     _productFilter.dispose();
     _tagsController.dispose();
-    _tagsFocus.dispose();
     _kFocus.dispose();
     super.dispose();
   }
@@ -68,7 +65,8 @@ class _ProductsContainerState extends State<ProductsContainer> {
                     TextFormField(
                       controller: _productFilter,
                       decoration: InputDecoration(
-                        border: null,
+                        border: InputBorder.none,
+                        suffixIcon: const SizedBox(width: 16),
                         prefixIcon: const Icon(FontAwesomeIcons.magnifyingGlass, size: 12),
                         hintText: 'Search by product name',
                         hintStyle: TextStyle(fontSize: 12.sp, color: grey.withOpacity(1), fontWeight: FontWeight.normal),
@@ -77,7 +75,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
                     const SizedBox(height: 10),
                     TextFieldTags(
                       textfieldTagsController: _tagsController,
-                      textSeparators: const <String>[' ', ','],
+                      textSeparators: const <String>[' ', ',', ';'],
                       letterCase: LetterCase.normal,
                       validator: (String tag) {
                         if (_tagsController.getTags!.contains(tag)) {
@@ -85,32 +83,33 @@ class _ProductsContainerState extends State<ProductsContainer> {
                         }
                         return null;
                       },
-                      focusNode: _tagsFocus,
                       inputfieldBuilder: (BuildContext context, TextEditingController tec, FocusNode fn, String? error, void Function(String)? onChanged, void Function(String)? onSubmitted) {
                         return (BuildContext context, ScrollController sc, List<String> tags, void Function(String) onTagDelete) {
                           return RawKeyboardListener(
                             focusNode: _kFocus,
                             onKey: (RawKeyEvent event) {
                               if (event is KeyDownEvent) {
-                                if (<LogicalKeyboardKey>[LogicalKeyboardKey.space].contains(event.logicalKey)) {
-                                  _tagsFocus.requestFocus();
+                                if (<LogicalKeyboardKey>[LogicalKeyboardKey.space, LogicalKeyboardKey.enter, LogicalKeyboardKey.numpadEnter, LogicalKeyboardKey.comma, LogicalKeyboardKey.semicolon].contains(event.logicalKey)) {
+                                  fn.requestFocus();
                                 }
                               }
                             },
-                            child: TextField(
-                              controller: tec,
-                              focusNode: fn,
-                              decoration: InputDecoration(
-                                isDense: true,
-                                hintText: _tagsController.hasTags ? '' : "Filter by category",
-                                hintStyle: TextStyle(color: grey, fontSize: 12.sp, fontWeight: FontWeight.w400),
-                                errorText: error,
-                                prefixIcon: tags.isNotEmpty
-                                    ? SingleChildScrollView(
-                                        controller: sc,
-                                        scrollDirection: Axis.horizontal,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(bottom: 8),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: TextField(
+                                controller: tec,
+                                focusNode: fn,
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  border: const OutlineInputBorder(borderSide: BorderSide.none),
+                                  hintText: _tagsController.hasTags ? '' : "Filter by category",
+                                  hintStyle: TextStyle(color: grey, fontSize: 12.sp, fontWeight: FontWeight.w400),
+                                  errorText: error,
+                                  suffixIcon: IconButton(onPressed: () => _tagsController.clearTags(), icon: const Icon(FontAwesomeIcons.x, size: 15)),
+                                  prefixIcon: tags.isNotEmpty
+                                      ? SingleChildScrollView(
+                                          controller: sc,
+                                          scrollDirection: Axis.horizontal,
                                           child: Row(
                                             children: tags.map(
                                               (String tag) {
@@ -126,12 +125,15 @@ class _ProductsContainerState extends State<ProductsContainer> {
                                               },
                                             ).toList(),
                                           ),
-                                        ),
-                                      )
-                                    : null,
+                                        )
+                                      : null,
+                                ),
+                                onChanged: onChanged,
+                                onSubmitted: (String text) {
+                                  onSubmitted != null ? onSubmitted(text) : null;
+                                  fn.requestFocus();
+                                },
                               ),
-                              onChanged: onChanged,
-                              onSubmitted: onSubmitted,
                             ),
                           );
                         };
