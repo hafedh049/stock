@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:stock/products/products_list.dart';
 import 'package:stock/utils/colors.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
@@ -139,6 +140,8 @@ class _ProductsContainerState extends State<ProductsContainer> {
                         };
                       },
                     ),
+                    const SizedBox(height: 10),
+                    Expanded(child: ProductsList()),
                   ],
                 ),
               ),
