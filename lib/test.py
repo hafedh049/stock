@@ -32,17 +32,54 @@ with open() as fp:
             if not product_description in [item["product_description"] for item in l]:
                 break
 
-        product_real_price = 0
-        product_augmented_price = 0
+        product_price = 0
+        product_sell_price = 0
         
         while True:
-            product_real_price = fake.random_number(digits=4)
-            product_augmented_price = fake.random_number(digits=4)
-            if product_augmented_price > product_real_price:
+            product_price = fake.random_number(digits=4)
+            product_sell_price = fake.random_number(digits=4)
+            if product_sell_price > product_price:
                 break        
 
         product_picture = []
 
         OFSNotification = randint(30,60)
 
+        product_qunatity = randint(65,380)
+
+        discount = 0
+
+        status = "IN STOCK"
+
+        entry_date = "01/09/2023"
+
+        product_category = ""
         
+        while True:
+            product_category = fake.name()
+            if product_category in [item["product_category"] for item in l]:
+                break    
+
+        product_brand = ""
+        
+        while True:
+            product_brand = fake.name()
+            if product_brand in [item["product_brand"] for item in l]:
+                break        
+
+        l.append({"product_id":product_id,
+                  "product_name":product_name,
+                  "product_description":product_description,
+                  "product_price":product_price,
+                  "product_sell_price":product_sell_price,
+                  "product_picture":product_picture,
+                  "soeuil":OFSNotification,
+                  "product_qunatity":product_qunatity,
+                  "product_discount":discount,
+                  "product_status":status,
+                  "product_date":entry_date,
+                  "product_category":product_category,
+                  "product_brand":product_brand,
+                  })
+
+    dump(l,fp)
