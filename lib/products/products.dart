@@ -13,24 +13,22 @@ class ProductsContainer extends StatefulWidget {
 }
 
 class _ProductsContainerState extends State<ProductsContainer> {
-  
   double _distanceToField = 0;
   final TextEditingController _productFilter = TextEditingController();
   final TextfieldTagsController _tagsController = TextfieldTagsController();
-  
+
   @override
   void dispose() {
     _productFilter.dispose();
     _tagsController.dispose();
     super.dispose();
   }
-  
- @override
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _distanceToField = MediaQuery.of(context).size.width;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -82,71 +80,71 @@ class _ProductsContainerState extends State<ProductsContainer> {
                     TextFieldTags(
                       letterCase: LetterCase.normal,
                       inputfieldBuilder: (BuildContext context, TextEditingController tec, FocusNode fn, String? error, void Function(String)? onChanged, void Function(String)? onSubmitted) {
-                       return (context, sc, tags, onTagDelete){
-                        return Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: TextField(
-                            controller: tec,
-                            focusNode: fn,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              border: const OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 74, 137, 92), width: 3.0)),
-                              focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 74, 137, 92), width: 3.0)),
-                              helperText: 'Enter language...',
-                              helperStyle: const TextStyle(color: Color.fromARGB(255, 74, 137, 92)),
-                              hintText: _tagsController.hasTags ? '' : "Enter tag...",
-                              errorText: error,
-                              prefixIconConstraints: BoxConstraints(maxWidth: _distanceToField * 0.74),
-                              prefixIcon: tags.isNotEmpty
-                                  ? SingleChildScrollView(
-                                      controller: sc,
-                                      scrollDirection: Axis.horizontal,
-                                      child: Row(
-                                          children: tags.map((String tag) {
-                                        return Container(
-                                          decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(20.0),
-                                            ),
-                                            color: Color.fromARGB(255, 74, 137, 92),
-                                          ),
-                                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                                          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              InkWell(
-                                                child: Text(
-                                                  '#$tag',
-                                                  style: const TextStyle(color: Colors.white),
-                                                ),
-                                                onTap: () {
-                                                  print("$tag selected");
-                                                },
+                        return (BuildContext context, ScrollController sc, List<String> tags, void Function(String) onTagDelete) {
+                          return Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: TextField(
+                              controller: tec,
+                              focusNode: fn,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                border: const OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 74, 137, 92), width: 3.0)),
+                                focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 74, 137, 92), width: 3.0)),
+                                helperText: 'Enter language...',
+                                helperStyle: const TextStyle(color: Color.fromARGB(255, 74, 137, 92)),
+                                hintText: _tagsController.hasTags ? '' : "Enter tag...",
+                                errorText: error,
+                                prefixIconConstraints: BoxConstraints(maxWidth: _distanceToField * 0.74),
+                                prefixIcon: tags.isNotEmpty
+                                    ? SingleChildScrollView(
+                                        controller: sc,
+                                        scrollDirection: Axis.horizontal,
+                                        child: Row(
+                                            children: tags.map((String tag) {
+                                          return Container(
+                                            decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(20.0),
                                               ),
-                                              const SizedBox(width: 4.0),
-                                              InkWell(
-                                                child: const Icon(
-                                                  Icons.cancel,
-                                                  size: 14.0,
-                                                  color: Color.fromARGB(255, 233, 233, 233),
+                                              color: Color.fromARGB(255, 74, 137, 92),
+                                            ),
+                                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                                            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                InkWell(
+                                                  child: Text(
+                                                    '#$tag',
+                                                    style: const TextStyle(color: Colors.white),
+                                                  ),
+                                                  onTap: () {
+                                                    print("$tag selected");
+                                                  },
                                                 ),
-                                                onTap: () {
-                                                  onTagDelete(tag);
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      }).toList()),
-                                    )
-                                  : null,
+                                                const SizedBox(width: 4.0),
+                                                InkWell(
+                                                  child: const Icon(
+                                                    Icons.cancel,
+                                                    size: 14.0,
+                                                    color: Color.fromARGB(255, 233, 233, 233),
+                                                  ),
+                                                  onTap: () {
+                                                    onTagDelete(tag);
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        }).toList()),
+                                      )
+                                    : null,
+                              ),
+                              onChanged: onChanged,
+                              onSubmitted: onSubmitted,
                             ),
-                            onChanged: onChanged,
-                            onSubmitted: onSubmitted,
-                          ),
-                        );
-                       }
+                          );
+                        };
                       },
                     ),
                   ],
