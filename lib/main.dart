@@ -14,7 +14,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
-      initial: AdaptiveThemeMode.light,
+      initial: AdaptiveThemeMode.dark,
       dark: darkTheme,
       light: lightTheme,
       builder: (ThemeData light, ThemeData dark) {
