@@ -19,7 +19,12 @@ class Main extends StatelessWidget {
       builder: (ThemeData light, ThemeData dark) {
         return ResponsiveSizer(
           builder: (BuildContext context, Orientation orientation, ScreenType deviceType) {
-            return MaterialApp(debugShowCheckedModeBanner: false, theme: light, darkTheme: dark);
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: light,
+              darkTheme: dark,
+              home: ,
+            );
           },
         );
       },
