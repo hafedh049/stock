@@ -8,6 +8,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:stock/models/product_model.dart';
 import 'package:stock/products/products_list.dart';
 import 'package:stock/utils/colors.dart';
+import 'package:stock/utils/helpers.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
 class ProductsContainer extends StatefulWidget {
@@ -32,7 +33,14 @@ class _ProductsContainerState extends State<ProductsContainer> {
     super.dispose();
   }
 
-  Future<List> _loadProducts() async => json.decode((await rootBundle.loadString("assets/test.json"))).map((e) => Product.fromJson(e)).toList();
+  Future<(List<dynamic>, List<Map<String, Uint8List>>)> _loadProducts() async {
+    final List products = json.decode((await rootBundle.loadString("assets/test.json"))).map((e) => Product.fromJson(e)).toList();
+    final List<Map<String, Uint8List>> productsPictures = <Map<String, Uint8List>>[
+      for (final product in products) <String, Uint8List>{"product_id": product.productId, "products_picture": await getProductPicture(product.productPictures)}
+    ];
+
+    return (products, productsPictures);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,13 +150,13 @@ class _ProductsContainerState extends State<ProductsContainer> {
                     Divider(height: .2, thickness: .2, color: grey.withOpacity(.5), indent: 25, endIndent: 25),
                     const SizedBox(height: 10),
                     Expanded(
-                      child: FutureBuilder<List>(
+                      child: FutureBuilder<(List<dynamic>, List<Map<String, Uint8List>>)>(
                         future: _loadProducts(),
-                        builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+                        builder: (BuildContext context, AsyncSnapshot<(List<dynamic>, List<Map<String, Uint8List>>)> snapshot) {
                           if (snapshot.hasData) {
                             return Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: ProductsList(products: snapshot.data!),
+                              child: ProductsList(products: snapshot.data!.$1, productsPictures: snapshot.data!.$2),
                             );
                           } else if (snapshot.connectionState == ConnectionState.waiting) {
                             return const Center(child: CircularProgressIndicator());
