@@ -38,7 +38,7 @@ class Product {
       productSellPrice: json['product_sell_price'],
       productPicture: List<String>.from(json['product_picture']),
       seuil: json['seuil'],
-      productQuantity: json['product_quantity'], // Fixed typo in 'product_quantity'
+      productQuantity: json['product_quantity'],
       productDiscount: json['product_discount'],
       productStatus: json['product_status'],
       productDate: json['product_date'],
@@ -56,7 +56,7 @@ class Product {
       'product_sell_price': productSellPrice,
       'product_picture': productPicture,
       'seuil': seuil,
-      'product_quantity': productQuantity, // Fixed typo in 'product_quantity'
+      'product_quantity': productQuantity,
       'product_discount': productDiscount,
       'product_status': productStatus,
       'product_date': productDate,
@@ -64,6 +64,4 @@ class Product {
       'product_brand': productBrand,
     };
   }
-
-  get values => toJson().keys.where((value) => !<String>['product_description', 'product_price', 'product_picture'].contains(value)).map((e) => toJson()[e]).toList();
 }

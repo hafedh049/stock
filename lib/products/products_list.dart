@@ -17,13 +17,13 @@ class _ProductsListState extends State<ProductsList> {
     return ExpandableTable(
       headerHeight: 60,
       firstColumnWidth: 50,
-      firstHeaderCell: ExpandableTableCell(child: Container(color: grey.withOpacity(.3))),
+      firstHeaderCell: ExpandableTableCell(child: Container(color: grey.withOpacity(.1))),
       headers: <ExpandableTableHeader>[
         for (final String header in _headers)
           ExpandableTableHeader(
             cell: ExpandableTableCell(
               child: Container(
-                color: grey.withOpacity(.3),
+                color: grey.withOpacity(.1),
                 child: Align(alignment: AlignmentDirectional.centerStart, child: Text(header)),
               ),
             ),
@@ -34,9 +34,10 @@ class _ProductsListState extends State<ProductsList> {
           ExpandableTableRow(
             firstCell: ExpandableTableCell(child: Text(widget.products.indexOf(product).toString())),
             cells: <ExpandableTableCell>[
-              for (final dynamic value in product.values)
+              for (final MapEntry<String, dynamic> value in product.toJson().entries)
                 ExpandableTableCell(
-                  child: Text('$value'),
+                  child: value.key ? :
+                   Text('$value'),
                 ),
             ],
           )
