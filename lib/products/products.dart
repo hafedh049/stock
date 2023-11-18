@@ -81,6 +81,8 @@ class _ProductsContainerState extends State<ProductsContainer> {
                       ),
                     ),
                     const SizedBox(height: 10),
+                    Divider(height: .2, thickness: .2, color: grey.withOpacity(.5), indent: 25, endIndent: 25),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextFieldTags(
@@ -136,6 +138,8 @@ class _ProductsContainerState extends State<ProductsContainer> {
                         },
                       ),
                     ),
+                    const SizedBox(height: 10),
+                    Divider(height: .2, thickness: .2, color: grey.withOpacity(.5), indent: 25, endIndent: 25),
                     const SizedBox(height: 10),
                     Expanded(
                       child: FutureBuilder<List>(
