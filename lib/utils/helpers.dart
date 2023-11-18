@@ -44,3 +44,5 @@ List<LinearGradient> generateUniqueGradients() {
 
   return gradients;
 }
+
+List<Color> getColors() => Colors.primaries.map((Color e) => e.withOpacity(.2)).toList();

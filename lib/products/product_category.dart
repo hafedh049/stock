@@ -7,7 +7,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:stock/models/category_model.dart';
 import 'package:stock/models/product_model.dart';
-import 'package:stock/products/products_list.dart';
 import 'package:stock/utils/colors.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
@@ -159,20 +158,38 @@ class _ProductCategoryState extends State<ProductCategory> {
                     Divider(height: .2, thickness: .2, color: grey.withOpacity(.5), indent: 25, endIndent: 25),
                     const SizedBox(height: 10),
                     Expanded(
-                      child: FutureBuilder<(List<dynamic>, List<Map<String, dynamic>>)>(
-                        future: _loadProducts(),
-                        builder: (BuildContext context, AsyncSnapshot<(List<dynamic>, List<Map<String, dynamic>>)> snapshot) {
-                          if (snapshot.hasData) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: ProductsList(products: snapshot.data!.$1, productsPictures: snapshot.data!.$2),
-                            );
-                          } else if (snapshot.connectionState == ConnectionState.waiting) {
-                            return const Center(child: CircularProgressIndicator());
-                          } else {
-                            return Center(child: Text(snapshot.error.toString()));
-                          }
-                        },
+                      child: SingleChildScrollView(
+                        child: FutureBuilder<List<CategoryModel>>(
+                          future: _loadProducts(),
+                          builder: (BuildContext context, AsyncSnapshot<List<CategoryModel>> snapshot) {
+                            if (snapshot.hasData) {
+                              return Wrap(
+                                alignment: WrapAlignment.center,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                runAlignment: WrapAlignment.center,
+                                spacing: 20,
+                                runSpacing: 20,
+                                children: snapshot.data!
+                                    .map(
+                                      (CategoryModel category) => Container(
+                                        padding: const EdgeInsets.all(16),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(25),
+                                          color: Theme.of(context).colorScheme.background,
+                                          boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
+                                        ),
+                                        child: C,
+                                      ),
+                                    )
+                                    .toList(),
+                              );
+                            } else if (snapshot.connectionState == ConnectionState.waiting) {
+                              return const Center(child: CircularProgressIndicator());
+                            } else {
+                              return Center(child: Text(snapshot.error.toString()));
+                            }
+                          },
+                        ),
                       ),
                     ),
                   ],
