@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -10,4 +12,4 @@ Future<Uint8List> getProductPicture(List<List<int>> picture) async {
   }
 }
 
-List<Color> getColors() => Colors.primaries.map((Color e) => e.withOpacity(.2)).toList();
+Color getColor() => Colors.primaries.map((Color e) => e.withOpacity(.2)).toList()[Random().nextInt(Colors.primaries.length)];

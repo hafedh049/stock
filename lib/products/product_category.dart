@@ -174,11 +174,23 @@ class _ProductCategoryState extends State<ProductCategory> {
                                       (CategoryModel category) => Container(
                                         width: 300,
                                         height: 400,
-                                        padding: const EdgeInsets.all(16),
                                         decoration: BoxDecoration(
+                                          border: Border.all(color: grey.withOpacity(.3), width: .5),
                                           borderRadius: BorderRadius.circular(25),
                                           color: Theme.of(context).colorScheme.background,
                                           boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(16),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Container(
+                                                height: 200,
+                                                color: get,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     )
