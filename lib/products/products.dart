@@ -22,6 +22,8 @@ class _ProductsContainerState extends State<ProductsContainer> {
   final TextfieldTagsController _tagsController = TextfieldTagsController();
   final FocusNode _kFocus = FocusNode();
 
+  final List<LogicalKeyboardKey> _keys = <LogicalKeyboardKey>[LogicalKeyboardKey.space, LogicalKeyboardKey.enter, LogicalKeyboardKey.numpadEnter, LogicalKeyboardKey.comma, LogicalKeyboardKey.semicolon];
+
   @override
   void dispose() {
     _productFilter.dispose();
@@ -30,7 +32,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
     super.dispose();
   }
 
-  Future<List<Product>> _loadProducts() async => json.decode((await rootBundle.loadString("assets/test.json"))).map((dynamic e) => Product.fromJson(e)).toList();
+  Future<List> _loadProducts() async => json.decode((await rootBundle.loadString("assets/test.json"))).map((e) => Product.fromJson(e)).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -79,29 +81,18 @@ class _ProductsContainerState extends State<ProductsContainer> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    TextFieldTags(
-                      textfieldTagsController: _tagsController,
-                      textSeparators: const <String>[' ', ',', ';'],
-                      letterCase: LetterCase.normal,
-                      validator: (String tag) {
-                        if (_tagsController.getTags!.contains(tag)) {
-                          return 'You already entered that.';
-                        }
-                        return null;
-                      },
-                      inputfieldBuilder: (BuildContext context, TextEditingController tec, FocusNode fn, String? error, void Function(String)? onChanged, void Function(String)? onSubmitted) {
-                        return (BuildContext context, ScrollController sc, List<String> tags, void Function(String) onTagDelete) {
-                          return RawKeyboardListener(
-                            focusNode: _kFocus,
-                            onKey: (RawKeyEvent event) {
-                              if (event is KeyDownEvent) {
-                                if (<LogicalKeyboardKey>[LogicalKeyboardKey.space, LogicalKeyboardKey.enter, LogicalKeyboardKey.numpadEnter, LogicalKeyboardKey.comma, LogicalKeyboardKey.semicolon].contains(event.logicalKey)) {
-                                  fn.requestFocus();
-                                }
-                              }
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextFieldTags(
+                        textfieldTagsController: _tagsController,
+                        textSeparators: const <String>[' ', ',', ';'],
+                        letterCase: LetterCase.normal,
+                        validator: (String tag) => _tagsController.getTags!.contains(tag) ? 'You already entered that.' : null,
+                        inputfieldBuilder: (BuildContext context, TextEditingController tec, FocusNode fn, String? error, void Function(String)? onChanged, void Function(String)? onSubmitted) {
+                          return (BuildContext context, ScrollController sc, List<String> tags, void Function(String) onTagDelete) {
+                            return RawKeyboardListener(
+                              focusNode: _kFocus,
+                              onKey: (RawKeyEvent event) => event is KeyDownEvent && _keys.contains(event.logicalKey) ? fn.requestFocus() : null,
                               child: TextField(
                                 controller: tec,
                                 focusNode: fn,
@@ -140,18 +131,21 @@ class _ProductsContainerState extends State<ProductsContainer> {
                                   fn.requestFocus();
                                 },
                               ),
-                            ),
-                          );
-                        };
-                      },
+                            );
+                          };
+                        },
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Expanded(
-                      child: FutureBuilder<List<Product>>(
+                      child: FutureBuilder<List>(
                         future: _loadProducts(),
-                        builder: (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
+                        builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
                           if (snapshot.hasData) {
-                            return ProductsList(products: snapshot.data!);
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: ProductsList(products: snapshot.data!),
+                            );
                           } else if (snapshot.connectionState == ConnectionState.waiting) {
                             return const Center(child: CircularProgressIndicator());
                           } else {

@@ -65,5 +65,5 @@ class Product {
     };
   }
 
-  get values => toJson().values;
+  get values => toJson().keys.where((value) => !<String>['product_description', 'product_price', 'product_picture'].contains(value)).map((e) => toJson()[e]).toList();
 }
