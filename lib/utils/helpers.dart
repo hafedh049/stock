@@ -12,37 +12,4 @@ Future<Uint8List> getProductPicture(List<List<int>> picture) async {
   }
 }
 
-List<LinearGradient> generateUniqueGradients() {
-  final List<LinearGradient> gradients = <LinearGradient>[];
-  final Random random = Random();
-
-  while (gradients.length < 20) {
-    final Color color1 = Color.fromARGB(
-      255,
-      random.nextInt(256),
-      random.nextInt(256),
-      random.nextInt(256),
-    );
-
-    final Color color2 = Color.fromARGB(
-      255,
-      random.nextInt(256),
-      random.nextInt(256),
-      random.nextInt(256),
-    );
-
-    final LinearGradient newGradient = LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [color1, color2],
-    );
-
-    if (!gradients.contains(newGradient)) {
-      gradients.add(newGradient);
-    }
-  }
-
-  return gradients;
-}
-
 List<Color> getColors() => Colors.primaries.map((Color e) => e.withOpacity(.2)).toList();
