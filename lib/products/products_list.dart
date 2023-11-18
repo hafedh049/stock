@@ -46,7 +46,7 @@ class _ProductsListState extends State<ProductsList> {
                       ? RichText(
                           text: TextSpan(
                             children: <TextSpan>[
-                              TextSpan(text: '#', style: TextStyle(fontWeight: FontWeight.w400,color: blue)),
+                              TextSpan(text: '#', style: TextStyle(fontWeight: FontWeight.w400, color: blue)),
                               TextSpan(text: entry.value.substring(1), style: const TextStyle(fontWeight: FontWeight.w400)),
                             ],
                           ),
@@ -58,32 +58,41 @@ class _ProductsListState extends State<ProductsList> {
                                 Container(
                                   width: 40,
                                   height: 40,
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), image: const DecorationImage(image: AssetImage('assets/test.png'))),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    image: const DecorationImage(image: AssetImage('assets/test.png'), fit: BoxFit.cover),
+                                  ),
                                 ),
                                 const SizedBox(width: 10),
-                                Text(
-                                  '${entry.value}',
-                                  style: const TextStyle(fontWeight: FontWeight.w400),
-                                ),
+                                Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400)),
                               ],
                             )
-                          : entry.key == 'product_sell_price' ? RichText(
-                          text: TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(text: '${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400)),
-                               TextSpan(text: 'DT', style: TextStyle(fontWeight: FontWeight.w400,color: blue)),
-                            ],
-                          ),
-                        ):entry.key == 'category' ? Text(
-                                  '${entry.value}',
-                                  style: const TextStyle(fontWeight: FontWeight.w400),
-                                ):entry.key == 'status' ? Container(
-                                  padding: const EdgeInsets.all(4),
-                                  decoration: BoxDecoration(color: green.withOpacity(.4)),
-                                  child: Text(
-                                  '${entry.value}',
-                                  style: const TextStyle(fontWeight: FontWeight.w400,color: green),
-                                ),):,
+                          : entry.key == 'product_sell_price'
+                              ? RichText(
+                                  text: TextSpan(
+                                    children: <TextSpan>[
+                                      TextSpan(text: '${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400)),
+                                      TextSpan(text: 'DT', style: TextStyle(fontWeight: FontWeight.w400, color: blue)),
+                                    ],
+                                  ),
+                                )
+                              : entry.key == 'product_category'
+                                  ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
+                                  : entry.key == 'status'
+                                      ? Container(
+                                          padding: const EdgeInsets.all(4),
+                                          decoration: BoxDecoration(color: green.withOpacity(.4)),
+                                          child: Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400, color: green)),
+                                        )
+                                      : entry.key == 'product_brand'
+                                          ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
+                                          : entry.key == 'product_date'
+                                              ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
+                                              : entry.key == ''
+                                                  ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
+                                                  : entry.key == 'category'
+                                                      ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
+                                                      : const SizedBox(),
                 ),
             ],
           ),
