@@ -189,7 +189,9 @@ class _ProductCategoryState extends State<ProductCategory> {
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
-                                                  const SizedBox(height: 165),
+                                                  const SizedBox(height: 50),
+                                                  Image.memory(getProductPicture(category.categoryImage)),
+                                                  const SizedBox(height: 50),
                                                   Row(
                                                     children: <Widget>[
                                                       const Spacer(),
@@ -211,7 +213,7 @@ class _ProductCategoryState extends State<ProductCategory> {
                                                   const SizedBox(height: 10),
                                                   Row(
                                                     children: <Widget>[
-                                                      Text(category.category, style: TextStyle(color: grey, fontSize: 13.sp, fontWeight: FontWeight.w400)),
+                                                      Text("Number of products", style: TextStyle(color: grey, fontSize: 13.sp, fontWeight: FontWeight.w400)),
                                                       const Spacer(),
                                                       Text(category.numberOfProducts.toString(), style: TextStyle(color: grey, fontSize: 13.sp, fontWeight: FontWeight.w400)),
                                                     ],
@@ -224,7 +226,15 @@ class _ProductCategoryState extends State<ProductCategory> {
                                                       runAlignment: WrapAlignment.start,
                                                       spacing: 10,
                                                       runSpacing: 10,
-                                                      children: category.brands.,
+                                                      children: category.brands
+                                                          .map(
+                                                            (String e) => Container(
+                                                              decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(10)), border: Border.all(color: grey, width: .5)),
+                                                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                                              child: Text(e, style: const TextStyle(fontWeight: FontWeight.w500)),
+                                                            ),
+                                                          )
+                                                          .toList(),
                                                     ),
                                                   ),
                                                 ],
