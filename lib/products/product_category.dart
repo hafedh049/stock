@@ -36,17 +36,18 @@ class _ProductCategoryState extends State<ProductCategory> {
     final String jsonString = await rootBundle.loadString("assets/test.json");
     final List<dynamic> productsJson = json.decode(jsonString);
 
-    // Group products by category
     final Map<String, List<Product>> productsByCategory = {};
-    for (dynamic productData in productsJson) {
-      final Product product = Product.fromJson(productData);
-      final String category = product.productCategory;
 
+    while (productsJson.isNotEmpty) {
+      final Product product = Product.fromJson(productsJson.first);
+      final String category = product.productCategory;
       if (productsByCategory.containsKey(category)) {
         productsByCategory[category]!.add(product);
       } else {
         productsByCategory[category] = [product];
       }
+
+      productsJson.removeAt(0);
     }
 
     final List<CategoryModel> categories = await Future.wait(
@@ -212,7 +213,7 @@ class _ProductCategoryState extends State<ProductCategory> {
                                                     ],
                                                   ),
                                                   const SizedBox(height: 10),
-                                                  Text(category.category, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                                  Text(category.category[0].toUpperCase() + category.category.substring(1), style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
                                                   const SizedBox(height: 10),
                                                   Row(
                                                     children: <Widget>[
@@ -234,7 +235,7 @@ class _ProductCategoryState extends State<ProductCategory> {
                                                             (String e) => Container(
                                                               decoration: BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(10)), border: Border.all(color: grey, width: .5)),
                                                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                                                              child: Text(e, style: const TextStyle(fontWeight: FontWeight.w500)),
+                                                              child: Text(e[0].toUpperCase() + e.substring(1), style: const TextStyle(fontWeight: FontWeight.w500)),
                                                             ),
                                                           )
                                                           .toList(),
