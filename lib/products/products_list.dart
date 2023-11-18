@@ -58,7 +58,7 @@ class _ProductsListState extends State<ProductsList> {
                                     height: 30,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
-                                      image: DecorationImage(image: MemoryImage(widget.productsPictures.firstWhere((Map<String, dynamic> element) => element.keys.first == product.productId)["product_picture"]!), fit: BoxFit.cover),
+                                      image: DecorationImage(image: MemoryImage(widget.productsPictures.firstWhere((Map<String, dynamic> element) => element["product_id"] == product.productId)["product_picture"]!), fit: BoxFit.cover),
                                     ),
                                   ),
                                   const SizedBox(width: 10),
