@@ -73,7 +73,7 @@ class _ProductsListState extends State<ProductsList> {
                                             child: Text('${entry.value}', style: TextStyle(fontWeight: FontWeight.w500, color: entry.value == 'IN STOCK' ? green : red)),
                                           )
                                         : entry.key == 'product_brand'
-                                            ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
+                                            ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w500))
                                             : entry.key == 'product_date'
                                                 ? Container(
                                                     padding: const EdgeInsets.all(4),
@@ -92,7 +92,7 @@ class _ProductsListState extends State<ProductsList> {
                                                             decoration: BoxDecoration(color: brown.withOpacity(.4), borderRadius: BorderRadius.circular(5)),
                                                             child: Text('${entry.value}%', style: const TextStyle(fontWeight: FontWeight.w500)),
                                                           )
-                                                        : const Text('1111111'),
+                                                        : const SizedBox(),
                   ),
                 ),
             ],
