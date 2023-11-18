@@ -18,7 +18,7 @@ class _ProductsListState extends State<ProductsList> {
     return ExpandableTable(
       headerHeight: 60,
       firstColumnWidth: 50,
-      firstHeaderCell: ExpandableTableCell(child: Container(color: grey.withOpacity(.1))),
+      firstHeaderCell: ExpandableTableCell(child: Container(decoration: BoxDecoration(borderRadius: const BorderRadius.only(topLeft: Radius.circular(15)), color: grey.withOpacity(.1)))),
       headers: <ExpandableTableHeader>[
         for (final String header in _headers)
           ExpandableTableHeader(
@@ -97,7 +97,7 @@ class _ProductsListState extends State<ProductsList> {
                                                 : entry.key == 'product_quantity'
                                                     ? Container(
                                                         padding: const EdgeInsets.all(4),
-                                                        decoration: BoxDecoration(color: purple.withOpacity(.4)),
+                                                        decoration: BoxDecoration(color: purple.withOpacity(.4), borderRadius: BorderRadius.circular(5)),
                                                         child: Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400)),
                                                       )
                                                     : entry.key == 'product_discount'
