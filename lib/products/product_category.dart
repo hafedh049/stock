@@ -172,13 +172,14 @@ class _ProductCategoryState extends State<ProductCategory> {
                                 children: snapshot.data!
                                     .map(
                                       (CategoryModel category) => Container(
+                                        width: 300,
+                                        height: 400,
                                         padding: const EdgeInsets.all(16),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(25),
                                           color: Theme.of(context).colorScheme.background,
                                           boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
                                         ),
-                                        child: C,
                                       ),
                                     )
                                     .toList(),
