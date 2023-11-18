@@ -78,10 +78,11 @@ class _ProductsListState extends State<ProductsList> {
                                   '${entry.value}',
                                   style: const TextStyle(fontWeight: FontWeight.w400),
                                 ):entry.key == 'status' ? Container(
-                                  decoration: BoxDecoration(color: ),
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: BoxDecoration(color: green.withOpacity(.4)),
                                   child: Text(
                                   '${entry.value}',
-                                  style: const TextStyle(fontWeight: FontWeight.w400),
+                                  style: const TextStyle(fontWeight: FontWeight.w400,color: green),
                                 ),):,
                 ),
             ],
