@@ -99,7 +99,7 @@ class _ProductCategoryState extends State<ProductCategory> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
-                  color: Theme.of(context).colorScheme.background,
+                  color: white.withOpacity(.95),
                   boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
                 ),
                 child: Column(
@@ -193,9 +193,9 @@ class _ProductCategoryState extends State<ProductCategory> {
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
-                                                  const SizedBox(height: 50),
-                                                  Center(child: SizedBox(width: 60, height: 60, child: Image.memory(Uint8List.fromList(category.categoryImage)))),
-                                                  const SizedBox(height: 50),
+                                                  const SizedBox(height: 20),
+                                                  Center(child: SizedBox(width: 125, height: 125, child: Image.memory(Uint8List.fromList(category.categoryImage)))),
+                                                  const SizedBox(height: 20),
                                                   Row(
                                                     children: <Widget>[
                                                       const Spacer(),
