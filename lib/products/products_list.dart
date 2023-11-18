@@ -46,7 +46,7 @@ class _ProductsListState extends State<ProductsList> {
                       ? RichText(
                           text: TextSpan(
                             children: <TextSpan>[
-                              const TextSpan(text: '#', style: TextStyle(fontWeight: FontWeight.w400)),
+                              TextSpan(text: '#', style: TextStyle(fontWeight: FontWeight.w400,color: blue)),
                               TextSpan(text: entry.value.substring(1), style: const TextStyle(fontWeight: FontWeight.w400)),
                             ],
                           ),
@@ -55,13 +55,34 @@ class _ProductsListState extends State<ProductsList> {
                           ? Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
+                                Container(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), image: const DecorationImage(image: AssetImage('assets/test.png'))),
+                                ),
+                                const SizedBox(width: 10),
                                 Text(
                                   '${entry.value}',
                                   style: const TextStyle(fontWeight: FontWeight.w400),
                                 ),
                               ],
                             )
-                          : SizedBox(),
+                          : entry.key == 'product_sell_price' ? RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(text: '${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400)),
+                               TextSpan(text: 'DT', style: TextStyle(fontWeight: FontWeight.w400,color: blue)),
+                            ],
+                          ),
+                        ):entry.key == 'category' ? Text(
+                                  '${entry.value}',
+                                  style: const TextStyle(fontWeight: FontWeight.w400),
+                                ):entry.key == 'status' ? Container(
+                                  decoration: BoxDecoration(color: ),
+                                  child: Text(
+                                  '${entry.value}',
+                                  style: const TextStyle(fontWeight: FontWeight.w400),
+                                ),):,
                 ),
             ],
           ),
