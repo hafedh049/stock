@@ -40,7 +40,7 @@ class _ProductsListState extends State<ProductsList> {
               ),
             ),
             cells: <ExpandableTableCell>[
-              for (final MapEntry<String, dynamic> entry in product.toJson().entries)
+              for (final MapEntry<String, dynamic> entry in product.toJson().entries.where((element) => _headers.contains(element.key.replaceAll('product', '').replaceAll('_', ' ').trim().toUpperCase())))
                 ExpandableTableCell(
                   child: entry.key == 'product_id'
                       ? RichText(
