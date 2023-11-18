@@ -1,15 +1,14 @@
 import 'dart:convert';
 
 import 'package:animated_button/animated_button.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:stock/models/category_model.dart';
 import 'package:stock/models/product_model.dart';
 import 'package:stock/products/products_list.dart';
 import 'package:stock/utils/colors.dart';
-import 'package:stock/utils/helpers.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
 class ProductCategory extends StatefulWidget {
@@ -33,7 +32,7 @@ class _ProductCategoryState extends State<ProductCategory> {
     super.dispose();
   }
 
-  Future<List<Category>> _loadProducts() async {
+  Future<List<CategoryModel>> _loadProducts() async {
     final String jsonString = await rootBundle.loadString("assets/test.json");
     final List<dynamic> productsJson = json.decode(jsonString);
 
@@ -50,10 +49,17 @@ class _ProductCategoryState extends State<ProductCategory> {
       }
     }
 
-    // Create Category objects
-    final List<Category> categories = productsByCategory.entries.map((MapEntry<String, List<Product>> entry) {
-      return Cate;
-    }).toList();
+    final List<CategoryModel> categories = productsByCategory.entries.map(
+      (MapEntry<String, List<Product>> entry) {
+        return CategoryModel(
+          products: entry.value,
+          category: entry.key,
+          categoryImage: <int>[],
+          numberOfProducts: entry.value.length,
+          brands: Set<String>.from(entry.value.map((Product e) => e.productBrand)).take(5).toList(),
+        );
+      },
+    ).toList();
 
     return categories;
   }
