@@ -14,7 +14,7 @@ class ProductsList extends StatefulWidget {
 
 class _ProductsListState extends State<ProductsList> {
   final List<String> _headers = <String>['ID', 'NAME', 'PRICE', 'QUANTITY', 'DISCOUNT', 'STATUS', 'DATE', 'CATEGORY', 'BRAND'];
-
+  final List<String> _filters = <String>['product_metadata', 'product_sku', 'product_upc_a', 'product_ean', 'product_isbn', 'product_currency', 'product_description', 'product_price', 'product_pictures', 'product_seuil'];
   @override
   Widget build(BuildContext context) {
     return ExpandableTable(
@@ -43,7 +43,7 @@ class _ProductsListState extends State<ProductsList> {
               ),
             ),
             cells: <ExpandableTableCell>[
-              for (final MapEntry<String, dynamic> entry in product.toJson().entries.where((MapEntry<String, dynamic> element) => !const <String>['product_description', 'product_price', 'product_pictures', 'product_seuil'].contains(element.key)).toList())
+              for (final MapEntry<String, dynamic> entry in product.toJson().entries.where((MapEntry<String, dynamic> element) => !_filters.contains(element.key)).toList())
                 ExpandableTableCell(
                   child: Align(
                     alignment: AlignmentDirectional.centerStart,
