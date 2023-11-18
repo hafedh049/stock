@@ -40,19 +40,12 @@ class _ProductsListState extends State<ProductsList> {
               ),
             ),
             cells: <ExpandableTableCell>[
-              for (final MapEntry<String, dynamic> entry in product.toJson().entries.where((MapEntry<String, dynamic> element) => !const <String>['product_description', 'product_price', 'product_picture', 'seuil'].contains(element.key)).toList())
+              for (final MapEntry<String, dynamic> entry in product.toJson().entries.where((MapEntry<String, dynamic> element) => !const <String>['product_description', 'product_price', 'product_pictures', 'product_seuil'].contains(element.key)).toList())
                 ExpandableTableCell(
                   child: Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: entry.key == 'product_id'
-                        ? RichText(
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(text: '#', style: TextStyle(fontWeight: FontWeight.w500, color: blue)),
-                                TextSpan(text: entry.value, style: const TextStyle(fontWeight: FontWeight.w500)),
-                              ],
-                            ),
-                          )
+                        ? Text('${entry.value}', style: TextStyle(fontWeight: FontWeight.w500, color: blue))
                         : entry.key == 'product_name'
                             ? Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -70,16 +63,9 @@ class _ProductsListState extends State<ProductsList> {
                                 ],
                               )
                             : entry.key == 'product_sell_price'
-                                ? RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(text: '${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400)),
-                                        TextSpan(text: 'DT', style: TextStyle(fontWeight: FontWeight.w500, color: blue)),
-                                      ],
-                                    ),
-                                  )
+                                ? Text('${entry.value}DT', style: TextStyle(fontWeight: FontWeight.w500, color: blue))
                                 : entry.key == 'product_category'
-                                    ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
+                                    ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w500))
                                     : entry.key == 'product_status'
                                         ? Container(
                                             padding: const EdgeInsets.all(4),
