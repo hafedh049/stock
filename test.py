@@ -8,7 +8,7 @@ fake = Faker()
 
 l = []
 
-with open("test.json", "w") as fp:
+with open("./assets/test.json", "w") as fp:
     for _ in range(100): 
         print(_)
         product_id = ""
@@ -53,19 +53,10 @@ with open("test.json", "w") as fp:
 
         entry_date = "01/09/2023"
 
-        product_category = ""
+        product_category = fake.word()
 
-        while True:
-            product_category = fake.name()
-            if not product_category in [item["product_category"] for item in l]:
-                break
-
-        product_brand = ""
-
-        while True:
-            product_brand = fake.name()
-            if not product_brand in [item["product_brand"] for item in l]:
-                break
+        
+        product_brand = fake.word()
 
         SKU = ""
         while True:
