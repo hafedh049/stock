@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_table/flutter_expandable_table.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,7 +7,7 @@ import 'package:stock/utils/colors.dart';
 class ProductsList extends StatefulWidget {
   const ProductsList({super.key, required this.products, required this.productsPictures});
   final List products;
-  final List<Map<String, Uint8List>> productsPictures;
+  final List<Map<String, dynamic>> productsPictures;
   @override
   State<ProductsList> createState() => _ProductsListState();
 }
@@ -60,7 +58,7 @@ class _ProductsListState extends State<ProductsList> {
                                     height: 30,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
-                                      image: DecorationImage(image: MemoryImage(widget.productsPictures.firstWhere((Map<String, Uint8List> element) => element.keys.first == product.productId)["product_picture"]!), fit: BoxFit.cover),
+                                      image: DecorationImage(image: MemoryImage(widget.productsPictures.firstWhere((Map<String, dynamic> element) => element.keys.first == product.productId)["product_picture"]!), fit: BoxFit.cover),
                                     ),
                                   ),
                                   const SizedBox(width: 10),

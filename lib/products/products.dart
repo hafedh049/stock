@@ -33,10 +33,10 @@ class _ProductsContainerState extends State<ProductsContainer> {
     super.dispose();
   }
 
-  Future<(List<dynamic>, List<Map<String, Uint8List>>)> _loadProducts() async {
-    final List products = json.decode((await rootBundle.loadString("assets/test.json"))).map((e) => Product.fromJson(e)).toList();
-    final List<Map<String, Uint8List>> productsPictures = <Map<String, Uint8List>>[
-      for (final product in products) <String, Uint8List>{"product_id": product.productId, "products_picture": await getProductPicture(product.productPictures)}
+  Future<(List<dynamic>, List<Map<String, dynamic>>)> _loadProducts() async {
+    final List products = json.decode((await rootBundle.loadString("assets/test.json"))).map((dynamic e) => Product.fromJson(e)).toList();
+    final List<Map<String, dynamic>> productsPictures = <Map<String, dynamic>>[
+      for (final product in products) <String, dynamic>{"product_id": product.productId, "product_picture": await getProductPicture(product.productPictures)}
     ];
 
     return (products, productsPictures);
@@ -150,9 +150,9 @@ class _ProductsContainerState extends State<ProductsContainer> {
                     Divider(height: .2, thickness: .2, color: grey.withOpacity(.5), indent: 25, endIndent: 25),
                     const SizedBox(height: 10),
                     Expanded(
-                      child: FutureBuilder<(List<dynamic>, List<Map<String, Uint8List>>)>(
+                      child: FutureBuilder<(List<dynamic>, List<Map<String, dynamic>>)>(
                         future: _loadProducts(),
-                        builder: (BuildContext context, AsyncSnapshot<(List<dynamic>, List<Map<String, Uint8List>>)> snapshot) {
+                        builder: (BuildContext context, AsyncSnapshot<(List<dynamic>, List<Map<String, dynamic>>)> snapshot) {
                           if (snapshot.hasData) {
                             return Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 16),
