@@ -33,13 +33,14 @@ class _ProductsContainerState extends State<ProductsContainer> {
     super.dispose();
   }
 
-  Future<(List<dynamic>, List<Map<String, dynamic>>)> _loadProducts() async {
-    final List products = json.decode((await rootBundle.loadString("assets/test.json"))).map((dynamic e) => Product.fromJson(e)).toList();
-    final List<Map<String, dynamic>> productsPictures = <Map<String, dynamic>>[
-      for (final product in products) <String, dynamic>{"product_id": product.productId, "product_picture": await getProductPicture(product.productPictures)}
-    ];
+  Future<List<dynamic>> _loadProducts() async {
+    final List products = json.decode((await rootBundle.loadString("assets/test.json"))).map((dynamic e) async {
+      Product product = Product.fromJson(e);
+      product.productPicture = await getProductPicture(product.productPictures);
+      return product;
+    }).toList();
 
-    return (products, productsPictures);
+    return products;
   }
 
   @override
@@ -150,13 +151,13 @@ class _ProductsContainerState extends State<ProductsContainer> {
                     Divider(height: .2, thickness: .2, color: grey.withOpacity(.5), indent: 25, endIndent: 25),
                     const SizedBox(height: 10),
                     Expanded(
-                      child: FutureBuilder<(List<dynamic>, List<Map<String, dynamic>>)>(
+                      child: FutureBuilder<List<dynamic>>(
                         future: _loadProducts(),
-                        builder: (BuildContext context, AsyncSnapshot<(List<dynamic>, List<Map<String, dynamic>>)> snapshot) {
+                        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
                           if (snapshot.hasData) {
                             return Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: ProductsList(products: snapshot.data!.$1, productsPictures: snapshot.data!.$2),
+                              child: ProductsList(products: snapshot.data!),
                             );
                           } else if (snapshot.connectionState == ConnectionState.waiting) {
                             return const Center(child: CircularProgressIndicator());

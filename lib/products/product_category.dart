@@ -19,7 +19,6 @@ class ProductCategory extends StatefulWidget {
 }
 
 class _ProductCategoryState extends State<ProductCategory> {
-  final TextEditingController _productFilter = TextEditingController();
   final TextfieldTagsController _tagsController = TextfieldTagsController();
   final FocusNode _kFocus = FocusNode();
 
@@ -27,7 +26,7 @@ class _ProductCategoryState extends State<ProductCategory> {
 
   @override
   void dispose() {
-    _productFilter.dispose();
+    _keys.clear();
     _tagsController.dispose();
     _kFocus.dispose();
     super.dispose();

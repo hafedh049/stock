@@ -4,6 +4,7 @@ class Product {
   String productDescription;
   int productPrice;
   int productSellPrice;
+  List<int> productPicture = <int>[];
   List<List<int>> productPictures;
   int productSeuil;
   int productQuantity;
@@ -48,7 +49,7 @@ class Product {
       productDescription: json['product_description'],
       productPrice: json['product_price'],
       productSellPrice: json['product_sell_price'],
-      productPictures: (json['product_pictures'] as List<dynamic>).map<List<int>>((picture) => (picture as List<dynamic>).cast<int>()).toList(),
+      productPictures: (json['product_pictures'] as List<dynamic>).map<List<int>>((dynamic picture) => (picture as List<dynamic>).cast<int>()).toList(),
       productSeuil: json['product_seuil'],
       productQuantity: json['product_quantity'],
       productDiscount: json['product_discount'],
