@@ -8,6 +8,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:stock/models/category_model.dart';
 import 'package:stock/models/product_model.dart';
 import 'package:stock/utils/colors.dart';
+import 'package:stock/utils/helpers.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
 class ProductCategory extends StatefulWidget {
@@ -180,17 +181,56 @@ class _ProductCategoryState extends State<ProductCategory> {
                                           color: Theme.of(context).colorScheme.background,
                                           boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
                                         ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(16),
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Container(
-                                                height: 200,
-                                                color: get,
+                                        child: Stack(
+                                          children: <Widget>[
+                                            Container(height: 200, decoration: BoxDecoration(borderRadius: const BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)), color: getColor())),
+                                            Padding(
+                                              padding: const EdgeInsets.all(16),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  const SizedBox(height: 165),
+                                                  Row(
+                                                    children: <Widget>[
+                                                      const Spacer(),
+                                                      Container(
+                                                        padding: const EdgeInsets.all(8),
+                                                        decoration: BoxDecoration(
+                                                          shape: BoxShape.circle,
+                                                          border: Border.all(color: grey.withOpacity(.3), width: .5),
+                                                          color: Theme.of(context).colorScheme.background,
+                                                          boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 2, blurRadius: 5, offset: const Offset(0, 5))],
+                                                        ),
+                                                        child: Center(child: Icon(FontAwesomeIcons.tree, color: blue, size: 15)),
+                                                      ),
+                                                      const SizedBox(width: 20),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 10),
+                                                  Text(category.category, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                                  const SizedBox(height: 10),
+                                                  Row(
+                                                    children: <Widget>[
+                                                      Text(category.category, style: TextStyle(color: grey, fontSize: 13.sp, fontWeight: FontWeight.w400)),
+                                                      const Spacer(),
+                                                      Text(category.numberOfProducts.toString(), style: TextStyle(color: grey, fontSize: 13.sp, fontWeight: FontWeight.w400)),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 10),
+                                                  Expanded(
+                                                    child: Wrap(
+                                                      alignment: WrapAlignment.start,
+                                                      crossAxisAlignment: WrapCrossAlignment.start,
+                                                      runAlignment: WrapAlignment.start,
+                                                      spacing: 10,
+                                                      runSpacing: 10,
+                                                      children: category.brands.,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     )
