@@ -49,17 +49,20 @@ class _ProductCategoryState extends State<ProductCategory> {
       }
     }
 
-    final List<CategoryModel> categories = productsByCategory.entries.map(
-      (MapEntry<String, List<Product>> entry) {
-        return CategoryModel(
-          products: entry.value,
-          category: entry.key,
-          categoryImage: <int>[],
-          numberOfProducts: entry.value.length,
-          brands: Set<String>.from(entry.value.map((Product e) => e.productBrand)).take(5).toList(),
-        );
-      },
-    ).toList();
+    final List<CategoryModel> categories = await Future.wait(
+      productsByCategory.entries.map(
+        (MapEntry<String, List<Product>> entry) async {
+          List<int> picture = await getProductPicture(entry.value.first.productPictures);
+          return CategoryModel(
+            products: entry.value,
+            category: entry.key,
+            categoryImage: picture,
+            numberOfProducts: entry.value.length,
+            brands: Set<String>.from(entry.value.map((Product e) => e.productBrand)).take(5).toList(),
+          );
+        },
+      ).toList(),
+    );
 
     return categories;
   }
@@ -190,7 +193,7 @@ class _ProductCategoryState extends State<ProductCategory> {
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   const SizedBox(height: 50),
-                                                  Image.memory(getProductPicture(category.categoryImage)),
+                                                  Center(child: SizedBox(width: 60, height: 60, child: Image.memory(Uint8List.fromList(category.categoryImage)))),
                                                   const SizedBox(height: 50),
                                                   Row(
                                                     children: <Widget>[
