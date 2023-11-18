@@ -1,15 +1,16 @@
 from faker import Faker
 from json import dump
 from string import ascii_letters, digits
-from random import sample, randint
-from isbnlib import EAN13
+from random import sample, randint,choices
+from isbnlib import EAN13,is_isbn13
 
 fake = Faker()
 
 l = []
 
 with open("test.json", "w") as fp:
-    for _ in range(100):  # Generating 10 fake products
+    for _ in range(100): 
+        print(_)
         product_id = ""
 
         while True:
@@ -68,26 +69,26 @@ with open("test.json", "w") as fp:
 
         SKU = ""
         while True:
-            SKU = "".join(["#", *sample(ascii_letters + digits, 8)]).upper()
+            SKU = "".join(sample(ascii_letters + digits, 8)).upper()
             if not SKU in [item["product_sku"] for item in l]:
                 break
 
         UPC_A = ""
         while True:
-            UPC_A = "".join(["#", *sample(digits, 12)])
+            UPC_A = "".join(choices(digits,k= 12))
             if not UPC_A in [item["product_upc_a"] for item in l]:
                 break
 
         EAN = ""
         while True:
-            EAN = "".join(["#", *sample(digits, 13)])
+            EAN = "".join( choices(digits,k= 13))
             if not EAN in [item["product_ean"] for item in l]:
                 break
 
         ISBN = ""
 
         while True:
-            ISBN = EAN13("978" + "".join(str(randint(0, 9)) for _ in range(9)))
+            ISBN = EAN13("".join(choices(digits,k= 13)))
             if not ISBN in [item["product_isbn"] for item in l]:
                 break
 
@@ -115,8 +116,8 @@ with open("test.json", "w") as fp:
                 ),
                 "number_of_reviews": fake.random_int(min=10, max=100),
             },
-            "related_products": [fake.word() for _ in range(3)],
-            "cross-sell_or_up-sell_products": [fake.word() for _ in range(2)],
+            "related_products": [fake.word() for __ in range(3)],
+            "cross-sell_or_up-sell_products": [fake.word() for __ in range(2)],
         }
 
         l.append(
