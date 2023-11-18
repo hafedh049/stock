@@ -83,7 +83,7 @@ class _ProductsListState extends State<ProductsList> {
                                     : entry.key == 'status'
                                         ? Container(
                                             padding: const EdgeInsets.all(4),
-                                            decoration: BoxDecoration(color: green.withOpacity(.4)),
+                                            decoration: BoxDecoration(color: green.withOpacity(.4), borderRadius: BorderRadius.circular(5)),
                                             child: Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400, color: green)),
                                           )
                                         : entry.key == 'product_brand'
