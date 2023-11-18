@@ -74,7 +74,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
                       controller: _productFilter,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        suffixIcon: const SizedBox(width: 16),
+                        suffixIcon: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[IconButton(onPressed: () => _productFilter.clear(), icon: const Icon(FontAwesomeIcons.x, size: 15)), const SizedBox(width: 16)]),
                         prefixIcon: const Icon(FontAwesomeIcons.magnifyingGlass, size: 12),
                         hintText: 'Search by product name',
                         hintStyle: TextStyle(fontSize: 12.sp, color: grey.withOpacity(1), fontWeight: FontWeight.normal),
