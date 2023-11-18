@@ -34,8 +34,26 @@ class _ProductCategoryState extends State<ProductCategory> {
   }
 
   Future<List<Category>> _loadProducts() async {
-    final List products = json.decode((await rootBundle.loadString("assets/test.json"))).map((dynamic e) => Product.fromJson(e)).toList();
-    final List<Category> categories = <Category>[];
+    final String jsonString = await rootBundle.loadString("assets/test.json");
+    final List<dynamic> productsJson = json.decode(jsonString);
+
+    // Group products by category
+    final Map<String, List<Product>> productsByCategory = {};
+    for (dynamic productData in productsJson) {
+      final Product product = Product.fromJson(productData);
+      final String category = product.productCategory;
+
+      if (productsByCategory.containsKey(category)) {
+        productsByCategory[category]!.add(product);
+      } else {
+        productsByCategory[category] = [product];
+      }
+    }
+
+    // Create Category objects
+    final List<Category> categories = productsByCategory.entries.map((MapEntry<String, List<Product>> entry) {
+      return Cate;
+    }).toList();
 
     return categories;
   }
