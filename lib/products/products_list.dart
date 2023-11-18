@@ -12,7 +12,7 @@ class ProductsList extends StatefulWidget {
 }
 
 class _ProductsListState extends State<ProductsList> {
-  final List<String> _headers = <String>['PRODUCT ID', 'NAME', 'PRICE', 'QUANTITY', 'DISCOUNT', 'STATUS', 'DATE', 'CATEGORY', 'BRAND'];
+  final List<String> _headers = <String>['ID', 'NAME', 'PRICE', 'QUANTITY', 'DISCOUNT', 'STATUS', 'DATE', 'CATEGORY', 'BRAND'];
   @override
   Widget build(BuildContext context) {
     return ExpandableTable(
