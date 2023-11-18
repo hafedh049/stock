@@ -89,13 +89,21 @@ class _ProductsListState extends State<ProductsList> {
                                           : entry.key == 'product_date'
                                               ? Container(
                                                   padding: const EdgeInsets.all(4),
-                                                  decoration: BoxDecoration(color: green.withOpacity(.4)),
-                                                  child: Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400, color: green)),
+                                                  decoration: BoxDecoration(color: yellow.withOpacity(.4)),
+                                                  child: Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400)),
                                                 )
                                               : entry.key == 'product_qunatity'
-                                                  ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
+                                                  ? Container(
+                                                      padding: const EdgeInsets.all(4),
+                                                      decoration: BoxDecoration(color: purple.withOpacity(.4)),
+                                                      child: Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400)),
+                                                    )
                                                   : entry.key == 'product_discount'
-                                                      ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
+                                                      ? Container(
+                                                          padding: const EdgeInsets.all(4),
+                                                          decoration: BoxDecoration(color: brown.withOpacity(.4)),
+                                                          child: Text('${entry.value}%', style: const TextStyle(fontWeight: FontWeight.w400)),
+                                                        )
                                                       : const SizedBox(),
                 ),
             ],
