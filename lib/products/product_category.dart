@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:animated_button/animated_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -32,13 +33,11 @@ class _ProductCategoryState extends State<ProductCategory> {
     super.dispose();
   }
 
-  Future<(List<dynamic>, List<Map<String, dynamic>>)> _loadProducts() async {
+  Future<List<Category>> _loadProducts() async {
     final List products = json.decode((await rootBundle.loadString("assets/test.json"))).map((dynamic e) => Product.fromJson(e)).toList();
-    final List<Map<String, dynamic>> productsPictures = <Map<String, dynamic>>[
-      for (final product in products) <String, dynamic>{"product_id": product.productId, "product_picture": await getProductPicture(product.productPictures)}
-    ];
+    final List<Category> categories = <Category>[];
 
-    return (products, productsPictures);
+    return categories;
   }
 
   @override
@@ -54,8 +53,8 @@ class _ProductCategoryState extends State<ProductCategory> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Products', style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w400)),
-                    RichText(text: TextSpan(children: <TextSpan>[TextSpan(text: 'Products ', style: TextStyle(fontSize: 12.sp, color: Theme.of(context).textTheme.bodyLarge!.color)), TextSpan(text: '• List', style: TextStyle(color: grey, fontSize: 12.sp))])),
+                    Text('Products Categories', style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w400)),
+                    RichText(text: TextSpan(children: <TextSpan>[TextSpan(text: 'Products ', style: TextStyle(fontSize: 12.sp, color: Theme.of(context).textTheme.bodyLarge!.color)), TextSpan(text: '• Categories', style: TextStyle(color: grey, fontSize: 12.sp))])),
                   ],
                 ),
                 const Spacer(),
@@ -77,19 +76,6 @@ class _ProductCategoryState extends State<ProductCategory> {
                 ),
                 child: Column(
                   children: <Widget>[
-                    TextFormField(
-                      controller: _productFilter,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        suffixIcon: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[IconButton(onPressed: () => _productFilter.clear(), icon: const Icon(FontAwesomeIcons.x, size: 15)), const SizedBox(width: 16)]),
-                        prefixIcon: const Icon(FontAwesomeIcons.magnifyingGlass, size: 12),
-                        hintText: 'Search by product name',
-                        hintStyle: TextStyle(fontSize: 12.sp, color: grey.withOpacity(1), fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Divider(height: .2, thickness: .2, color: grey.withOpacity(.5), indent: 25, endIndent: 25),
-                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextFieldTags(
