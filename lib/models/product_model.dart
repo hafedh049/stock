@@ -4,7 +4,7 @@ class Product {
   String productDescription;
   int productPrice;
   int productSellPrice;
-  List<String> productPicture;
+  List<List<int>> productPicture;
   int seuil;
   int productQuantity;
   int productDiscount;
@@ -36,8 +36,8 @@ class Product {
       productDescription: json['product_description'],
       productPrice: json['product_price'],
       productSellPrice: json['product_sell_price'],
-      productPicture: List<String>.from(json['product_picture']),
-      seuil: json['seuil'],
+      productPicture: List<List<int>>.from(json['product_pictures']),
+      seuil: json['product_seuil'],
       productQuantity: json['product_quantity'],
       productDiscount: json['product_discount'],
       productStatus: json['product_status'],
@@ -54,8 +54,8 @@ class Product {
       'product_description': productDescription,
       'product_price': productPrice,
       'product_sell_price': productSellPrice,
-      'product_picture': productPicture,
-      'seuil': seuil,
+      'product_pictures': productPicture,
+      'product_seuil': seuil,
       'product_quantity': productQuantity,
       'product_discount': productDiscount,
       'product_status': productStatus,
