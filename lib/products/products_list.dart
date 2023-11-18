@@ -64,7 +64,7 @@ class _ProductsListState extends State<ProductsList> {
                                 children: <Widget>[
                                   Container(width: 30, height: 30, decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), image: DecorationImage(image: MemoryImage(Uint8List.fromList(product.productPicture)), fit: BoxFit.cover))),
                                   const SizedBox(width: 10),
-                                  Expanded(child: Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))),
+                                  Expanded(child: Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w500))),
                                 ],
                               )
                             : entry.key == 'product_sell_price'
