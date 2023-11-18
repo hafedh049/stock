@@ -178,7 +178,6 @@ class _ProductCategoryState extends State<ProductCategory> {
                                     .map(
                                       (CategoryModel category) => Container(
                                         width: 300,
-                                        height: 400,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: grey.withOpacity(.3), width: .5),
                                           borderRadius: BorderRadius.circular(25),
@@ -189,12 +188,14 @@ class _ProductCategoryState extends State<ProductCategory> {
                                           children: <Widget>[
                                             Container(height: 200, decoration: BoxDecoration(borderRadius: const BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)), color: getColor())),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                                              padding: const EdgeInsets.all(16),
                                               child: Column(
+                                                mainAxisSize: MainAxisSize.min,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
-                                                  const SizedBox(height: 50),
+                                                  const SizedBox(height: 35),
                                                   Center(child: SizedBox(width: 125, height: 125, child: Image.memory(Uint8List.fromList(category.categoryImage)))),
+                                                  const SizedBox(height: 5),
                                                   Row(
                                                     children: <Widget>[
                                                       const Spacer(),
@@ -222,7 +223,7 @@ class _ProductCategoryState extends State<ProductCategory> {
                                                     ],
                                                   ),
                                                   const SizedBox(height: 10),
-                                                  Expanded(
+                                                  Flexible(
                                                     child: Wrap(
                                                       alignment: WrapAlignment.start,
                                                       crossAxisAlignment: WrapCrossAlignment.start,
