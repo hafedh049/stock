@@ -189,13 +189,12 @@ class _ProductCategoryState extends State<ProductCategory> {
                                           children: <Widget>[
                                             Container(height: 200, decoration: BoxDecoration(borderRadius: const BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)), color: getColor())),
                                             Padding(
-                                              padding: const EdgeInsets.all(16),
+                                              padding: const EdgeInsets.symmetric(horizontal: 16),
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
-                                                  const SizedBox(height: 20),
+                                                  const SizedBox(height: 50),
                                                   Center(child: SizedBox(width: 125, height: 125, child: Image.memory(Uint8List.fromList(category.categoryImage)))),
-                                                  const SizedBox(height: 20),
                                                   Row(
                                                     children: <Widget>[
                                                       const Spacer(),
@@ -213,13 +212,13 @@ class _ProductCategoryState extends State<ProductCategory> {
                                                     ],
                                                   ),
                                                   const SizedBox(height: 10),
-                                                  Text(category.category[0].toUpperCase() + category.category.substring(1), style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                                                  Text(category.category[0].toUpperCase() + category.category.substring(1), style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w400)),
                                                   const SizedBox(height: 10),
                                                   Row(
                                                     children: <Widget>[
-                                                      Text("Number of products", style: TextStyle(color: grey, fontSize: 13.sp, fontWeight: FontWeight.w400)),
+                                                      Text("Total", style: TextStyle(color: grey, fontSize: 12.sp, fontWeight: FontWeight.w500)),
                                                       const Spacer(),
-                                                      Text(category.numberOfProducts.toString(), style: TextStyle(color: grey, fontSize: 13.sp, fontWeight: FontWeight.w400)),
+                                                      Text(category.numberOfProducts.toString(), style: TextStyle(color: grey, fontSize: 12.sp, fontWeight: FontWeight.w500)),
                                                     ],
                                                   ),
                                                   const SizedBox(height: 10),
