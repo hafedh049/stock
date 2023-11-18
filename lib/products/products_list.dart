@@ -91,7 +91,7 @@ class _ProductsListState extends State<ProductsList> {
                                             : entry.key == 'product_date'
                                                 ? Container(
                                                     padding: const EdgeInsets.all(4),
-                                                    decoration: BoxDecoration(color: yellow.withOpacity(.4)),
+                                                    decoration: BoxDecoration(color: yellow.withOpacity(.4), borderRadius: BorderRadius.circular(5)),
                                                     child: Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400)),
                                                   )
                                                 : entry.key == 'product_quantity'
