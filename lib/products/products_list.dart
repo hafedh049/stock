@@ -16,6 +16,7 @@ class _ProductsListState extends State<ProductsList> {
   @override
   Widget build(BuildContext context) {
     return ExpandableTable(
+      defaultsColumnWidth: 150,
       headerHeight: 60,
       firstColumnWidth: 50,
       firstHeaderCell: ExpandableTableCell(child: Container(decoration: BoxDecoration(borderRadius: const BorderRadius.only(topLeft: Radius.circular(15)), color: grey.withOpacity(.1)))),
