@@ -5,3 +5,4 @@ const Color grey = Colors.grey;
 Color blue = Colors.blue.shade300;
 const Color red = Colors.red;
 const Color green = Colors.green;
+Color yellow = Colors.yellow.shade100;

@@ -87,10 +87,14 @@ class _ProductsListState extends State<ProductsList> {
                                       : entry.key == 'product_brand'
                                           ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
                                           : entry.key == 'product_date'
-                                              ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
-                                              : entry.key == ''
+                                              ? Container(
+                                                  padding: const EdgeInsets.all(4),
+                                                  decoration: BoxDecoration(color: green.withOpacity(.4)),
+                                                  child: Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400, color: green)),
+                                                )
+                                              : entry.key == 'product_qunatity'
                                                   ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
-                                                  : entry.key == 'category'
+                                                  : entry.key == 'product_discount'
                                                       ? Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w400))
                                                       : const SizedBox(),
                 ),
