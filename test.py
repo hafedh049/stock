@@ -1,7 +1,7 @@
 from faker import Faker
 from json import dump
 from string import ascii_letters, digits
-from random import sample, randint,choices
+from random import sample, randint,choices,choice
 from isbnlib import EAN13,is_isbn13
 
 fake = Faker()
@@ -53,10 +53,10 @@ with open("./assets/test.json", "w") as fp:
 
         entry_date = "01/09/2023"
 
-        product_category = fake.word()
+        product_category = choice([fake.word() for _ in range(10)])
 
         
-        product_brand = fake.word()
+        product_brand = choice([fake.word() for _ in range(10)])
 
         SKU = ""
         while True:
