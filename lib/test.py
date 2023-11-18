@@ -135,6 +135,11 @@ with open("test.json", "w") as fp:
                 "product_category": product_category,
                 "product_brand": product_brand,
                 "product_sku": SKU,
+                "product_upc_a": UPC_A,
+                "product_ean": EAN,
+                "product_isbn": ISBN,
+                "product_currency": currency,
+                "product_metadata": metadata,
             }
         )
 
