@@ -1,7 +1,8 @@
 from faker import Faker
 from json import dump
-from string import ascii_letters
+from string import ascii_letters, digits
 from random import sample, randint
+from isbnlib import EAN13
 
 fake = Faker()
 
@@ -65,6 +66,59 @@ with open("test.json", "w") as fp:
             if not product_brand in [item["product_brand"] for item in l]:
                 break
 
+        SKU = ""
+        while True:
+            SKU = "".join(["#", *sample(ascii_letters + digits, 8)]).upper()
+            if not SKU in [item["product_sku"] for item in l]:
+                break
+
+        UPC_A = ""
+        while True:
+            UPC_A = "".join(["#", *sample(digits, 12)])
+            if not UPC_A in [item["product_upc_a"] for item in l]:
+                break
+
+        EAN = ""
+        while True:
+            EAN = "".join(["#", *sample(digits, 13)])
+            if not EAN in [item["product_ean"] for item in l]:
+                break
+
+        ISBN = ""
+
+        while True:
+            ISBN = EAN13("978" + "".join(str(randint(0, 9)) for _ in range(9)))
+            if not ISBN in [item["product_isbn"] for item in l]:
+                break
+
+        currency = "TND"
+
+        metadata = {
+            "size": fake.random_element(["XS", "S", "M", "L", "XL"]),
+            "color": fake.color_name(),
+            "weight": fake.random_number(digits=2),
+            "dimensions": {
+                "length": fake.random_number(digits=2),
+                "width": fake.random_number(digits=2),
+                "height": fake.random_number(digits=2),
+            },
+            "material": fake.word(),
+            "style": fake.word(),
+            "variants": fake.random_elements(
+                elements=("Variant1", "Variant2", "Variant3"), length=3
+            ),
+            "product_features": fake.sentences(nb=3),
+            "product_specifications": fake.sentences(nb=5),
+            "reviews_and_ratings": {
+                "average_rating": fake.pyfloat(
+                    left_digits=1, right_digits=1, positive=True
+                ),
+                "number_of_reviews": fake.random_int(min=10, max=100),
+            },
+            "related_products": [fake.word() for _ in range(3)],
+            "cross-sell_or_up-sell_products": [fake.word() for _ in range(2)],
+        }
+
         l.append(
             {
                 "product_id": product_id,
@@ -80,6 +134,7 @@ with open("test.json", "w") as fp:
                 "product_date": entry_date,
                 "product_category": product_category,
                 "product_brand": product_brand,
+                "product_sku": SKU,
             }
         )
 
