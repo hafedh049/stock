@@ -56,7 +56,7 @@ class _ProductsListState extends State<ProductsList> {
                                     height: 30,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
-                                      image: const DecorationImage(image: AssetImage('assets/test.png'), fit: BoxFit.cover),
+                                      image: DecorationImage(image: MemoryImage(getProductPicture(product.productPictures)), fit: BoxFit.cover),
                                     ),
                                   ),
                                   const SizedBox(width: 10),
