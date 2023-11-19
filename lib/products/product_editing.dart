@@ -67,7 +67,9 @@ class _EditProductState extends State<EditProduct> {
                         boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
                       ),
                       child: Column(
-                        children: <Widget>[],
+                        children: <Widget>[
+                          Text("Basic Information", style: const TextStyle(color: white, fontWeight: FontWeight.w500)),
+                        ],
                       ),
                     ),
                   ),
