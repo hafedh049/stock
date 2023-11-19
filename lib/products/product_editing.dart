@@ -14,12 +14,14 @@ class EditProduct extends StatefulWidget {
 }
 
 class _EditProductState extends State<EditProduct> {
+  final QuillController _descriptionController = QuillController.basic();
   final TextEditingController _priceController = TextEditingController();
   final List<String> _brands = <String>['BRAND_A', 'BRAND_B', 'BRAND_C', 'BRAND_D'];
   final List<String> _categories = <String>['CATEGORY_A', 'CATEGORY_B', 'CATEGORY_C', 'CATEGORY_D'];
 
   @override
   void dispose() {
+    _descriptionController.dispose();
     _priceController.dispose();
     super.dispose();
   }
@@ -187,17 +189,23 @@ class _EditProductState extends State<EditProduct> {
                           const SizedBox(height: 10),
                           SizedBox(
                             height: 300,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text("Description ★", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
-                                const SizedBox(height: 10),
-                                const QuillToolbar(),
-                                Expanded(
-                                  child: QuillEditor.basic(),
-                                ),
-                              ],
+                            child: QuillProvider(
+                              configurations: QuillConfigurations(
+                                controller: _descriptionController,
+                                sharedConfigurations: const QuillSharedConfigurations(locale: Locale('en')),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text("Description ★", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                                  const SizedBox(height: 10),
+                                  const QuillToolbar(),
+                                  Expanded(
+                                    child: QuillEditor.basic(),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
