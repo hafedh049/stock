@@ -18,6 +18,12 @@ class _EditProductState extends State<EditProduct> {
     'BRAND_C',
     'BRAND_D',
   ];
+  final List<String> _categories = <String>[
+    'CATEGORY_A',
+    'CATEGORY_B',
+    'CATEGORY_C',
+    'CATEGORY_D',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
