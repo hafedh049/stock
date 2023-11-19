@@ -10,6 +10,13 @@ class EditProduct extends StatefulWidget {
 class _EditProductState extends State<EditProduct> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: <Widget>[],
+        ),
+      ),
+    );
   }
 }
