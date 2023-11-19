@@ -37,10 +37,13 @@ class _EditProductState extends State<EditProduct> {
                   ],
                 ),
                 const Spacer(),
-                TextButton(
-                  style: const ButtonStyle(backgroundColor: MaterialStatePropertyAll(grey)),
-                  onPressed: () {},
-                  child: const Row(mainAxisSize: MainAxisSize.min, children: <Widget>[Icon(FontAwesomeIcons.plus, size: 15), SizedBox(width: 10), Text('ADD', style: TextStyle(fontWeight: FontWeight.bold))]),
+                InkWell(
+                  hoverColor: transparent,
+                  onTap: () {},
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    child: const Row(mainAxisSize: MainAxisSize.min, children: <Widget>[Icon(FontAwesomeIcons.plus, size: 15), SizedBox(width: 10), Text('ADD', style: TextStyle(fontWeight: FontWeight.bold))]),
+                  ),
                 ),
               ],
             ),
