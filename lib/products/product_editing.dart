@@ -90,7 +90,7 @@ class _EditProductState extends State<EditProduct> {
                           Text("Brand Name", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
                           const SizedBox(height: 10),
                           SizedBox(
-                            height: 60,
+                            height: 50,
                             child: CustomDropdown<String>(
                               items: _brands,
                               initialItem: _brands[0],
@@ -102,7 +102,7 @@ class _EditProductState extends State<EditProduct> {
                           ),
                           const SizedBox(height: 10),
                           SizedBox(
-                            height: 100,
+                            height: 90,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -116,7 +116,7 @@ class _EditProductState extends State<EditProduct> {
                                       const SizedBox(height: 10),
                                       Expanded(
                                         child: SizedBox(
-                                          height: 60,
+                                          height: 50,
                                           child: CustomDropdown<String>(
                                             items: _categories,
                                             initialItem: _categories[0],
@@ -158,6 +158,30 @@ class _EditProductState extends State<EditProduct> {
                                 ),
                               ],
                             ),
+                          ),
+                          const SizedBox(height: 10),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text("Product Name ★", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                              const SizedBox(height: 10),
+                              SizedBox(
+                                height: 52,
+                                child: TextField(
+                                  style: const TextStyle(color: grey, fontWeight: FontWeight.w500),
+                                  onChanged: (String text) {},
+                                  decoration: InputDecoration(
+                                    hintStyle: const TextStyle(color: grey, fontWeight: FontWeight.w500),
+                                    hintText: "",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                      borderSide: const BorderSide(color: grey, width: .3),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
