@@ -84,7 +84,17 @@ class _EditProductState extends State<EditProduct> {
                           const SizedBox(height: 10),
                           Text("Brand Name", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
                           CustomDropdown<String>(
-                            hintText: 'Select job role',
+                            headerBuilder: (BuildContext context, String text) {
+                              return Container(
+                                padding: const EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: white,
+                                  border: Border.all(color: grey.withOpacity(.5), width: .3),
+                                  boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
+                                ),
+                              );
+                            },
                             items: _brands,
                             initialItem: _brands[0],
                             onChanged: (String value) {},
