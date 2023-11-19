@@ -49,12 +49,17 @@ class _EditProductState extends State<EditProduct> {
                       border: Border.all(color: grey.withOpacity(.5), width: .3),
                     ),
                     padding: const EdgeInsets.all(8),
-                    child: Text(widget.product == null ? 'ADD' : "EDIT", style: const TextStyle(color: white, fontWeight: FontWeight.bold)),
+                    child: Text(widget.product == null ? 'ADD' : "EDIT", style: const TextStyle(color: white, fontWeight: FontWeight.w500)),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 10),
+            Expanded(
+              child: Row(
+                children: <Widget>[],
+              ),
+            ),
           ],
         ),
       ),
