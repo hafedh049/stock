@@ -57,7 +57,31 @@ class _EditProductState extends State<EditProduct> {
             const SizedBox(height: 10),
             Expanded(
               child: Row(
-                children: <Widget>[],
+                children: <Widget>[
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: white,
+                        boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
+                      ),
+                      child: Column(
+                        children: <Widget>[],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: white,
+                        boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
