@@ -49,7 +49,7 @@ class _EditProductState extends State<EditProduct> {
                       child: AnimatedContainer(
                         duration: 700.ms,
                         decoration: BoxDecoration(
-                          color: _editState ? bgColor : white,
+                          color: _editState ? grey : white,
                           boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 2, blurRadius: 3, offset: const Offset(0, 5))],
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: grey.withOpacity(.5), width: .3),
