@@ -101,43 +101,45 @@ class _EditProductState extends State<EditProduct> {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                flex: 2,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text("Category ✔", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
-                                    const SizedBox(height: 10),
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: 60,
-                                        child: CustomDropdown<String>(
-                                          items: _categories,
-                                          initialItem: _categories[0],
-                                          onChanged: (String value) {},
-                                          headerBuilder: (BuildContext context, String text) => Text(text, style: const TextStyle(color: grey, fontWeight: FontWeight.w500)),
-                                          closedSuffixIcon: const Icon(FontAwesomeIcons.chevronDown, color: grey, size: 12),
-                                          expandedSuffixIcon: const Icon(FontAwesomeIcons.chevronUp, color: grey, size: 12),
+                          SizedBox(
+                            height: 100,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 2,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text("Category ★", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                                      const SizedBox(height: 10),
+                                      Expanded(
+                                        child: SizedBox(
+                                          height: 60,
+                                          child: CustomDropdown<String>(
+                                            items: _categories,
+                                            initialItem: _categories[0],
+                                            onChanged: (String value) {},
+                                            headerBuilder: (BuildContext context, String text) => Text(text, style: const TextStyle(color: grey, fontWeight: FontWeight.w500)),
+                                            closedSuffixIcon: const Icon(FontAwesomeIcons.chevronDown, color: grey, size: 12),
+                                            expandedSuffixIcon: const Icon(FontAwesomeIcons.chevronUp, color: grey, size: 12),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(width: 10),
-                              Flexible(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text("Price ✔", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
-                                    const SizedBox(height: 10),
-                                    Flexible(
-                                      child: SizedBox(
-                                        height: 60,
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text("Price ★", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                                      const SizedBox(height: 10),
+                                      SizedBox(
+                                        height: 52,
                                         child: TextField(
                                           style: const TextStyle(color: grey, fontWeight: FontWeight.w500),
                                           onChanged: (String text) {},
@@ -151,11 +153,11 @@ class _EditProductState extends State<EditProduct> {
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),
