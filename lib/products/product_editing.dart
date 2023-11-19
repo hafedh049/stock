@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:stock/models/product_model.dart';
 import 'package:stock/utils/colors.dart';
@@ -11,6 +12,7 @@ class EditProduct extends StatefulWidget {
 }
 
 class _EditProductState extends State<EditProduct> {
+  bool _editState = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,21 +38,27 @@ class _EditProductState extends State<EditProduct> {
                   ],
                 ),
                 const Spacer(),
-                InkWell(
-                  highlightColor: transparent,
-                  splashColor: transparent,
-                  hoverColor: transparent,
-                  onTap: () {},
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: white,
-                      boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(color: grey.withOpacity(.5), width: .3),
-                    ),
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('ADD', style: TextStyle(fontWeight: FontWeight.bold)),
-                  ),
+                StatefulBuilder(
+                  builder: (BuildContext context, void Function(void Function()) setS) {
+                    return InkWell(
+                      highlightColor: transparent,
+                      splashColor: transparent,
+                      hoverColor: transparent,
+                      onTap: () {},
+                      onHover: (bool hoverState) => setS(() => _editState = hoverState),
+                      child: AnimatedContainer(
+                        duration: 700.ms,
+                        decoration: BoxDecoration(
+                          color: _editState ? bgColor : white,
+                          boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 2, blurRadius: 3, offset: const Offset(0, 5))],
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: grey.withOpacity(.5), width: .3),
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        child: Text(widget.product == null ? 'ADD' : "EDIT", style: const TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
