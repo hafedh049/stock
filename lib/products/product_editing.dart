@@ -43,8 +43,10 @@ class _EditProductState extends State<EditProduct> {
                   onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
+                      color: white,
+                      boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
                       borderRadius: BorderRadius.circular(5),
-                      border: Border.all(color: grey.withOpacity(.1), width: .2),
+                      border: Border.all(color: grey.withOpacity(.5), width: .3),
                     ),
                     padding: const EdgeInsets.all(8),
                     child: const Text('ADD', style: TextStyle(fontWeight: FontWeight.bold)),
