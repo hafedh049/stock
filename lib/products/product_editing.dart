@@ -101,19 +101,19 @@ class _EditProductState extends State<EditProduct> {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          SizedBox(
-                            height: 60,
-                            child: Row(
-                              children: <Widget>[
-                                Expanded(
-                                  flex: 2,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text("Category ✔", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
-                                      const SizedBox(height: 10),
-                                      Expanded(
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 2,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text("Category ✔", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                                    const SizedBox(height: 10),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 60,
                                         child: CustomDropdown<String>(
                                           items: _categories,
                                           initialItem: _categories[0],
@@ -123,18 +123,21 @@ class _EditProductState extends State<EditProduct> {
                                           expandedSuffixIcon: const Icon(FontAwesomeIcons.chevronUp, color: grey, size: 12),
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(width: 10),
-                                Flexible(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text("Price ✔", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
-                                      const SizedBox(height: 10),
-                                      Flexible(
+                              ),
+                              const SizedBox(width: 10),
+                              Flexible(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text("Price ✔", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                                    const SizedBox(height: 10),
+                                    Flexible(
+                                      child: SizedBox(
+                                        height: 60,
                                         child: TextField(
                                           style: const TextStyle(color: grey, fontWeight: FontWeight.w500),
                                           onChanged: (String text) {},
@@ -148,11 +151,11 @@ class _EditProductState extends State<EditProduct> {
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
