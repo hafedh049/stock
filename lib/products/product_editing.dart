@@ -16,18 +16,12 @@ class EditProduct extends StatefulWidget {
 class _EditProductState extends State<EditProduct> {
   final QuillController _descriptionController = QuillController.basic();
   final TextEditingController _priceController = TextEditingController();
-  
-  final FocusNode _descriptionNode = FocusNode();
 
-  final ScrollController _descriptionScroller = ScrollController();
-  
   final List<String> _brands = <String>['BRAND_A', 'BRAND_B', 'BRAND_C', 'BRAND_D'];
   final List<String> _categories = <String>['CATEGORY_A', 'CATEGORY_B', 'CATEGORY_C', 'CATEGORY_D'];
 
   @override
   void dispose() {
-    _descriptionNode.dispose();
-    _descriptionScroller.dispose();
     _descriptionController.dispose();
     _priceController.dispose();
     super.dispose();
@@ -216,16 +210,11 @@ class _EditProductState extends State<EditProduct> {
                                       padding: const EdgeInsets.all(8),
                                       child: Column(
                                         children: <Widget>[
-                                          const QuillToolbar(),
+                                          const QuillToolbar(configurations: QuillToolbarConfigurations(showSmallButton: true, showAlignmentButtons: true, showDirection: true)),
                                           const SizedBox(height: 10),
                                           const Divider(height: .5, thickness: .5, color: grey, indent: 25, endIndent: 25),
                                           const SizedBox(height: 10),
-                                          Expanded(
-                                              child: Padding(
-                                                  padding: const EdgeInsets.all(8),
-                                                  child: QuillEditor(
-                                                    configurations: QuillEditorConfigurations(),focusNode: ,scrollController: ,
-                                                  ),),),
+                                          Expanded(child: Padding(padding: const EdgeInsets.all(8), child: QuillEditor.basic())),
                                         ],
                                       ),
                                     ),
