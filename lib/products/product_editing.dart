@@ -38,11 +38,17 @@ class _EditProductState extends State<EditProduct> {
                 ),
                 const Spacer(),
                 InkWell(
+                  highlightColor: transparent,
+                  splashColor: transparent,
                   hoverColor: transparent,
                   onTap: () {},
                   child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: grey.withOpacity(.1), width: .2),
+                    ),
                     padding: const EdgeInsets.all(8),
-                    child: const Row(mainAxisSize: MainAxisSize.min, children: <Widget>[Icon(FontAwesomeIcons.plus, size: 15), SizedBox(width: 10), Text('ADD', style: TextStyle(fontWeight: FontWeight.bold))]),
+                    child: const Text('ADD', style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ),
               ],
