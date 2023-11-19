@@ -234,6 +234,7 @@ class _EditProductState extends State<EditProduct> {
                   const SizedBox(width: 10),
                   Expanded(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
                           decoration: BoxDecoration(
@@ -288,11 +289,11 @@ class _EditProductState extends State<EditProduct> {
                             child: Padding(
                               padding: const EdgeInsets.all(16),
                               child: Column(
-                                mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text("Product Picture(s) ★", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                                  Row(children: <Widget>[Expanded(child: Text("Product Picture(s) ★", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)))]),
                                   const SizedBox(height: 10),
+                                  //for(final List<int> picture in widget.product!.productPictures)
                                 ],
                               ),
                             ),
