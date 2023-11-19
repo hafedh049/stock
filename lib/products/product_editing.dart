@@ -111,7 +111,7 @@ class _EditProductState extends State<EditProduct> {
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text("Category", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                                      Text("Category ✔", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
                                       const SizedBox(height: 10),
                                       Expanded(
                                         child: CustomDropdown<String>(
@@ -128,17 +128,27 @@ class _EditProductState extends State<EditProduct> {
                                 ),
                                 const SizedBox(width: 10),
                                 Flexible(
-                                  child: TextField(
-                                    style: const TextStyle(color: grey, fontWeight: FontWeight.w500),
-                                    onChanged: (String text) {},
-                                    decoration: InputDecoration(
-                                      hintStyle: const TextStyle(color: grey, fontWeight: FontWeight.w500),
-                                      hintText: "10DT",
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(5),
-                                        borderSide: const BorderSide(color: grey, width: .3),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text("Price ✔", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                                      const SizedBox(height: 10),
+                                      Flexible(
+                                        child: TextField(
+                                          style: const TextStyle(color: grey, fontWeight: FontWeight.w500),
+                                          onChanged: (String text) {},
+                                          decoration: InputDecoration(
+                                            hintStyle: const TextStyle(color: grey, fontWeight: FontWeight.w500),
+                                            hintText: "10DT",
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(5),
+                                              borderSide: const BorderSide(color: grey, width: .3),
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ),
                               ],
