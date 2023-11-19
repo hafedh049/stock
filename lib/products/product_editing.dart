@@ -12,18 +12,16 @@ class EditProduct extends StatefulWidget {
 }
 
 class _EditProductState extends State<EditProduct> {
-  final List<String> _brands = <String>[
-    'BRAND_A',
-    'BRAND_B',
-    'BRAND_C',
-    'BRAND_D',
-  ];
-  final List<String> _categories = <String>[
-    'CATEGORY_A',
-    'CATEGORY_B',
-    'CATEGORY_C',
-    'CATEGORY_D',
-  ];
+  final TextEditingController _priceController = TextEditingController();
+  final List<String> _brands = <String>['BRAND_A', 'BRAND_B', 'BRAND_C', 'BRAND_D'];
+  final List<String> _categories = <String>['CATEGORY_A', 'CATEGORY_B', 'CATEGORY_C', 'CATEGORY_D'];
+
+  @override
+  void dispose() {
+    _priceController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
