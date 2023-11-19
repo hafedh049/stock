@@ -1,5 +1,6 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:stock/models/product_model.dart';
 import 'package:stock/utils/colors.dart';
@@ -94,6 +95,9 @@ class _EditProductState extends State<EditProduct> {
                               items: _brands,
                               initialItem: _brands[0],
                               onChanged: (String value) {},
+                              headerBuilder: (BuildContext context, String text) => Text(text, style: const TextStyle(color: grey, fontWeight: FontWeight.w500)),
+                              closedSuffixIcon: const Icon(FontAwesomeIcons.chevronDown, color: grey, size: 12),
+                              expandedSuffixIcon: const Icon(FontAwesomeIcons.chevronUp, color: grey, size: 12),
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -107,6 +111,8 @@ class _EditProductState extends State<EditProduct> {
                                     initialItem: _categories[0],
                                     onChanged: (String value) {},
                                     headerBuilder: (BuildContext context, String text) => Text(text, style: const TextStyle(color: grey, fontWeight: FontWeight.w500)),
+                                    closedSuffixIcon: const Icon(FontAwesomeIcons.chevronDown, color: grey, size: 12),
+                                    expandedSuffixIcon: const Icon(FontAwesomeIcons.chevronUp, color: grey, size: 12),
                                   ),
                                 ),
                                 const SizedBox(width: 10),
