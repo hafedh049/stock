@@ -73,7 +73,7 @@ class _EditProductState extends State<EditProduct> {
                         children: <Widget>[
                           Text("Basic Information", style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500)),
                           const SizedBox(height: 10),
-                          Text("Basic Information", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                          Text("Brand Name", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
                         ],
                       ),
                     ),
