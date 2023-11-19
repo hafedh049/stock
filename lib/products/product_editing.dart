@@ -1,5 +1,6 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:stock/models/product_model.dart';
@@ -182,6 +183,22 @@ class _EditProductState extends State<EditProduct> {
                                 ),
                               ),
                             ],
+                          ),
+                          const SizedBox(height: 10),
+                          SizedBox(
+                            height: 300,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text("Description ★", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                                const SizedBox(height: 10),
+                                const QuillToolbar(),
+                                Expanded(
+                                  child: QuillEditor.basic(),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
