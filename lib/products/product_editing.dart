@@ -101,11 +101,11 @@ class _EditProductState extends State<EditProduct> {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: SizedBox(
-                                  height: 60,
+                          SizedBox(
+                            height: 60,
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
                                   child: Center(
                                     child: CustomDropdown<String>(
                                       items: _brands,
@@ -114,19 +114,19 @@ class _EditProductState extends State<EditProduct> {
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(width: 10),
-                              TextField(
-                                onChanged: (String text) {},
-                                decoration: InputDecoration(
-                                  hintText: "10DT",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: const BorderSide(color: grey, width: .3),
+                                const SizedBox(width: 10),
+                                TextField(
+                                  onChanged: (String text) {},
+                                  decoration: InputDecoration(
+                                    hintText: "10DT",
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                      borderSide: const BorderSide(color: grey, width: .3),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),
