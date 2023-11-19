@@ -23,6 +23,7 @@ dependencies:
   textfield_tags: ^2.0.2
   flutter_expandable_table: ^2.0.1
   flutter_quill: ^8.6.1
+  animated_custom_dropdown: ^2.0.0
 
 dev_dependencies:
   flutter_test:

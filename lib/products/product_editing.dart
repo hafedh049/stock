@@ -11,6 +11,12 @@ class EditProduct extends StatefulWidget {
 }
 
 class _EditProductState extends State<EditProduct> {
+  final List<String> _brands = <String>[
+    'BRAND_A',
+    'BRAND_B',
+    'BRAND_C',
+    'BRAND_D',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,6 +82,16 @@ class _EditProductState extends State<EditProduct> {
                           Text("Basic Information", style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500)),
                           const SizedBox(height: 10),
                           Text("Brand Name", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                          const SizedBox(height: 10),
+                          CustomDropdown<String>(
+                            hintText: 'Select job role',
+                            items: _list,
+                            initialItem: _list[0],
+                            onChanged: (value) {
+                              log('changing value to: $value');
+                            },
+                          ),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
