@@ -106,13 +106,24 @@ class _EditProductState extends State<EditProduct> {
                             child: Row(
                               children: <Widget>[
                                 Expanded(
-                                  child: CustomDropdown<String>(
-                                    items: _categories,
-                                    initialItem: _categories[0],
-                                    onChanged: (String value) {},
-                                    headerBuilder: (BuildContext context, String text) => Text(text, style: const TextStyle(color: grey, fontWeight: FontWeight.w500)),
-                                    closedSuffixIcon: const Icon(FontAwesomeIcons.chevronDown, color: grey, size: 12),
-                                    expandedSuffixIcon: const Icon(FontAwesomeIcons.chevronUp, color: grey, size: 12),
+                                  flex: 2,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text("Category", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                                      const SizedBox(height: 10),
+                                      Expanded(
+                                        child: CustomDropdown<String>(
+                                          items: _categories,
+                                          initialItem: _categories[0],
+                                          onChanged: (String value) {},
+                                          headerBuilder: (BuildContext context, String text) => Text(text, style: const TextStyle(color: grey, fontWeight: FontWeight.w500)),
+                                          closedSuffixIcon: const Icon(FontAwesomeIcons.chevronDown, color: grey, size: 12),
+                                          expandedSuffixIcon: const Icon(FontAwesomeIcons.chevronUp, color: grey, size: 12),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 const SizedBox(width: 10),
