@@ -1,3 +1,4 @@
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:stock/models/product_model.dart';
@@ -85,11 +86,9 @@ class _EditProductState extends State<EditProduct> {
                           const SizedBox(height: 10),
                           CustomDropdown<String>(
                             hintText: 'Select job role',
-                            items: _list,
-                            initialItem: _list[0],
-                            onChanged: (value) {
-                              log('changing value to: $value');
-                            },
+                            items: _brands,
+                            initialItem: _brands[0],
+                            onChanged: (String value) {},
                           ),
                           const SizedBox(height: 10),
                         ],
