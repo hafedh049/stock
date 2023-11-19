@@ -54,9 +54,9 @@ class _EditProductState extends State<EditProduct> {
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             Divider(height: .2, thickness: .2, color: grey.withOpacity(.5), indent: 25, endIndent: 25),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             Expanded(
               child: Row(
                 children: <Widget>[
