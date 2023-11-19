@@ -69,6 +69,7 @@ class _EditProductState extends State<EditProduct> {
                       child: Column(
                         children: <Widget>[
                           Text("Basic Information", style: const TextStyle(color: white, fontWeight: FontWeight.w500)),
+                          const SizedBox(height: 10),
                         ],
                       ),
                     ),
