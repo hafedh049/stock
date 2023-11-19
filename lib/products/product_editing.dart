@@ -2,9 +2,11 @@ import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:stock/models/product_model.dart';
 import 'package:stock/utils/colors.dart';
+import 'package:textfield_datepicker/textfield_datepicker.dart';
 
 class EditProduct extends StatefulWidget {
   const EditProduct({super.key, this.product});
@@ -16,12 +18,14 @@ class EditProduct extends StatefulWidget {
 class _EditProductState extends State<EditProduct> {
   final QuillController _descriptionController = QuillController.basic();
   final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
 
   final List<String> _brands = <String>['BRAND_A', 'BRAND_B', 'BRAND_C', 'BRAND_D'];
   final List<String> _categories = <String>['CATEGORY_A', 'CATEGORY_B', 'CATEGORY_C', 'CATEGORY_D'];
 
   @override
   void dispose() {
+    _dateController.dispose();
     _descriptionController.dispose();
     _priceController.dispose();
     super.dispose();
@@ -229,19 +233,51 @@ class _EditProductState extends State<EditProduct> {
                   ),
                   const SizedBox(width: 10),
                   Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: white,
-                        border: Border.all(color: grey.withOpacity(.5), width: .3),
-                        boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          children: <Widget>[],
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: white,
+                            border: Border.all(color: grey.withOpacity(.5), width: .3),
+                            boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text("Publish Date ★", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                                const SizedBox(height: 10),
+                                SizedBox(
+                                  height: 70,
+                                  child: TextfieldDatePicker(
+                                    cupertinoDatePickerBackgroundColor: Colors.white,
+                                    cupertinoDatePickerMaximumDate: DateTime(2099),
+                                    cupertinoDatePickerMaximumYear: 2099,
+                                    cupertinoDatePickerMinimumYear: 1990,
+                                    cupertinoDatePickerMinimumDate: DateTime(1990),
+                                    cupertinoDateInitialDateTime: DateTime.now(),
+                                    materialDatePickerFirstDate: DateTime.now(),
+                                    materialDatePickerInitialDate: DateTime.now(),
+                                    materialDatePickerLastDate: DateTime(2099),
+                                    preferredDateFormat: DateFormat('dd-MMMM-' 'yyyy'),
+                                    textfieldDatePickerController: _dateController,
+                                    style: const TextStyle(color: grey, fontWeight: FontWeight.w500),
+                                    decoration: InputDecoration(
+                                      hintStyle: const TextStyle(color: grey, fontWeight: FontWeight.w500),
+                                      hintText: "Date",
+                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: const BorderSide(color: grey, width: .3)),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 20),
+                      ],
                     ),
                   ),
                 ],

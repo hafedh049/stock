@@ -24,6 +24,8 @@ dependencies:
   flutter_expandable_table: ^2.0.1
   flutter_quill: ^8.6.1
   animated_custom_dropdown: ^2.0.0
+  textfield_datepicker: ^0.2.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
