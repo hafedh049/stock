@@ -83,10 +83,15 @@ class _EditProductState extends State<EditProduct> {
                           Text("Basic Information", style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500)),
                           const SizedBox(height: 10),
                           Text("Brand Name", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
-                          CustomDropdown<String>(
-                            items: _brands,
-                            initialItem: _brands[0],
-                            onChanged: (String value) {},
+                          SizedBox(
+                            height: 60,
+                            child: Center(
+                              child: CustomDropdown<String>(
+                                items: _brands,
+                                initialItem: _brands[0],
+                                onChanged: (String value) {},
+                              ),
+                            ),
                           ),
                           const SizedBox(height: 10),
                         ],
