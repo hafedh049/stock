@@ -111,10 +111,10 @@ class _EditProductState extends State<EditProduct> {
                                 const SizedBox(width: 10),
                                 Flexible(
                                   child: TextField(
-                                    style: const TextStyle(color: grey),
+                                    style: const TextStyle(color: black, fontWeight: FontWeight.w500),
                                     onChanged: (String text) {},
                                     decoration: InputDecoration(
-                                      hintStyle: const TextStyle(color: grey),
+                                      hintStyle: const TextStyle(color: grey, fontWeight: FontWeight.w500),
                                       hintText: "10DT",
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
