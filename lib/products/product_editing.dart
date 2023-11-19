@@ -71,8 +71,9 @@ class _EditProductState extends State<EditProduct> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          const Text("Basic Information", style: const TextStyle(fontWeight: FontWeight.w500)),
+                          Text("Basic Information", style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500)),
                           const SizedBox(height: 10),
+                          Text("Basic Information", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
                         ],
                       ),
                     ),
