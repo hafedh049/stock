@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:stock/products/product_category.dart';
+import 'package:stock/products/product_editing.dart';
 import 'package:stock/utils/themes.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class Main extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: lightTheme,
-          home: const ProductCategory(),
+          home: const EditProduct(),
         );
       },
     );
