@@ -10,6 +10,6 @@ class EditProduct extends StatefulWidget {
 class _EditProductState extends State<EditProduct> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container();
   }
 }
