@@ -26,7 +26,14 @@ class _EditProductState extends State<EditProduct> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text('Edit Product', style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w400)),
-                    RichText(text: TextSpan(children: <TextSpan>[TextSpan(text: 'Products ', style: TextStyle(fontSize: 12.sp, color: Theme.of(context).textTheme.bodyLarge!.color)), TextSpan(text: '• List', style: TextStyle(color: grey, fontSize: 12.sp))])),
+                    RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(text: 'Products ', style: TextStyle(fontSize: 12.sp, color: Theme.of(context).textTheme.bodyLarge!.color)),
+                          TextSpan(text: '• Edit Product', style: TextStyle(color: grey, fontSize: 12.sp)),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 const Spacer(),
