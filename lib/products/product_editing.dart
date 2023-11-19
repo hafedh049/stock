@@ -61,6 +61,7 @@ class _EditProductState extends State<EditProduct> {
                   Expanded(
                     flex: 2,
                     child: Container(
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         color: white,
@@ -68,8 +69,9 @@ class _EditProductState extends State<EditProduct> {
                         boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
                       ),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text("Basic Information", style: const TextStyle(color: white, fontWeight: FontWeight.w500)),
+                          const Text("Basic Information", style: const TextStyle(fontWeight: FontWeight.w500)),
                           const SizedBox(height: 10),
                         ],
                       ),
