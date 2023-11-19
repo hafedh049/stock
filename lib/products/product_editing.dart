@@ -83,7 +83,6 @@ class _EditProductState extends State<EditProduct> {
                           Text("Basic Information", style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500)),
                           const SizedBox(height: 10),
                           Text("Brand Name", style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500)),
-                          const SizedBox(height: 10),
                           CustomDropdown<String>(
                             hintText: 'Select job role',
                             items: _brands,
