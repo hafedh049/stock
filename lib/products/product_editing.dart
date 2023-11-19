@@ -173,7 +173,7 @@ class _EditProductState extends State<EditProduct> {
                                   onChanged: (String text) {},
                                   decoration: InputDecoration(
                                     hintStyle: const TextStyle(color: grey, fontWeight: FontWeight.w500),
-                                    hintText: "",
+                                    hintText: "Product Name",
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5),
                                       borderSide: const BorderSide(color: grey, width: .3),
