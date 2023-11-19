@@ -64,6 +64,7 @@ class _EditProductState extends State<EditProduct> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         color: white,
+                        border: Border.all(color: grey.withOpacity(.5), width: .3),
                         boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
                       ),
                       child: Column(
@@ -80,6 +81,7 @@ class _EditProductState extends State<EditProduct> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         color: white,
+                        border: Border.all(color: grey.withOpacity(.5), width: .3),
                         boxShadow: <BoxShadow>[BoxShadow(color: grey.withOpacity(.1), blurStyle: BlurStyle.inner, spreadRadius: 4, blurRadius: 5, offset: const Offset(0, 10))],
                       ),
                     ),
