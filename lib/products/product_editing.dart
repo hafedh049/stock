@@ -92,12 +92,10 @@ class _EditProductState extends State<EditProduct> {
                           const SizedBox(height: 10),
                           SizedBox(
                             height: 60,
-                            child: Center(
-                              child: CustomDropdown<String>(
-                                items: _brands,
-                                initialItem: _brands[0],
-                                onChanged: (String value) {},
-                              ),
+                            child: CustomDropdown<String>(
+                              items: _brands,
+                              initialItem: _brands[0],
+                              onChanged: (String value) {},
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -106,22 +104,22 @@ class _EditProductState extends State<EditProduct> {
                             child: Row(
                               children: <Widget>[
                                 Expanded(
-                                  child: Center(
-                                    child: CustomDropdown<String>(
-                                      items: _brands,
-                                      initialItem: _brands[0],
-                                      onChanged: (String value) {},
-                                    ),
+                                  child: CustomDropdown<String>(
+                                    items: _categories,
+                                    initialItem: _categories[0],
+                                    onChanged: (String value) {},
                                   ),
                                 ),
                                 const SizedBox(width: 10),
-                                TextField(
-                                  onChanged: (String text) {},
-                                  decoration: InputDecoration(
-                                    hintText: "10DT",
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(5),
-                                      borderSide: const BorderSide(color: grey, width: .3),
+                                Flexible(
+                                  child: TextField(
+                                    onChanged: (String text) {},
+                                    decoration: InputDecoration(
+                                      hintText: "10DT",
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                        borderSide: const BorderSide(color: grey, width: .3),
+                                      ),
                                     ),
                                   ),
                                 ),
