@@ -106,12 +106,13 @@ class _EditProductState extends State<EditProduct> {
                                     items: _categories,
                                     initialItem: _categories[0],
                                     onChanged: (String value) {},
+                                    headerBuilder: (BuildContext context, String text) => Text(text, style: const TextStyle(color: grey, fontWeight: FontWeight.w500)),
                                   ),
                                 ),
                                 const SizedBox(width: 10),
                                 Flexible(
                                   child: TextField(
-                                    style: const TextStyle(color: black, fontWeight: FontWeight.w500),
+                                    style: const TextStyle(color: grey, fontWeight: FontWeight.w500),
                                     onChanged: (String text) {},
                                     decoration: InputDecoration(
                                       hintStyle: const TextStyle(color: grey, fontWeight: FontWeight.w500),
