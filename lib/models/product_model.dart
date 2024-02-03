@@ -4,8 +4,8 @@ class Product {
   String productDescription;
   int productPrice;
   int productSellPrice;
-  List<int> productPicture = <int>[];
-  List<List<int>> productPictures;
+  String productPicture;
+  List<String> productPictures;
   int productSeuil;
   int productQuantity;
   int productDiscount;
@@ -21,6 +21,7 @@ class Product {
   ProductMetadata productMetadata;
 
   Product({
+    required this.productPicture,
     required this.productId,
     required this.productName,
     required this.productDescription,
@@ -44,12 +45,13 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
+      productPicture: json["product_picture"],
       productId: json['product_id'],
       productName: json['product_name'],
       productDescription: json['product_description'],
       productPrice: json['product_price'],
       productSellPrice: json['product_sell_price'],
-      productPictures: (json['product_pictures'] as List<dynamic>).map<List<int>>((dynamic picture) => (picture as List<dynamic>).cast<int>()).toList(),
+      productPictures: json['product_pictures'],
       productSeuil: json['product_seuil'],
       productQuantity: json['product_quantity'],
       productDiscount: json['product_discount'],

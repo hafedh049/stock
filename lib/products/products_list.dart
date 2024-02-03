@@ -17,14 +17,6 @@ class _ProductsListState extends State<ProductsList> {
   final List<String> _filters = <String>['product_metadata', 'product_sku', 'product_upc_a', 'product_ean', 'product_isbn', 'product_currency', 'product_description', 'product_price', 'product_pictures', 'product_seuil'];
 
   @override
-  void dispose() {
-    _filters.clear();
-    _headers.clear();
-    widget.products.clear();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return ExpandableTable(
       defaultsColumnWidth: 150,
@@ -46,9 +38,9 @@ class _ProductsListState extends State<ProductsList> {
         for (final Product product in widget.products)
           ExpandableTableRow(
             firstCell: ExpandableTableCell(
-              child: const Align(
+              child: Align(
                 alignment: AlignmentDirectional.centerStart,
-                child: IconButton(onPressed: null, icon: Icon(FontAwesomeIcons.chevronDown, size: 15)),
+                child: IconButton(onPressed: () {}, icon: const Icon(FontAwesomeIcons.chevronDown, size: 15)),
               ),
             ),
             cells: <ExpandableTableCell>[
@@ -62,7 +54,7 @@ class _ProductsListState extends State<ProductsList> {
                             ? Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                  Container(width: 30, height: 30, decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), image: DecorationImage(image: MemoryImage(Uint8List.fromList(product.productPicture)), fit: BoxFit.cover))),
+                                  Container(width: 30, height: 30, decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), image: DecorationImage(image: AssetImage(product.productPicture), fit: BoxFit.cover))),
                                   const SizedBox(width: 10),
                                   Expanded(child: Text('${entry.value}', style: const TextStyle(fontWeight: FontWeight.w500))),
                                 ],

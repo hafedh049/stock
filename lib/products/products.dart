@@ -8,7 +8,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:stock/models/product_model.dart';
 import 'package:stock/products/products_list.dart';
 import 'package:stock/utils/colors.dart';
-import 'package:stock/utils/helpers.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
 class ProductsContainer extends StatefulWidget {
@@ -33,15 +32,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
     super.dispose();
   }
 
-  Future<List<dynamic>> _loadProducts() async {
-    final List products = json.decode((await rootBundle.loadString("assets/test.json"))).map((dynamic e) async {
-      Product product = Product.fromJson(e);
-      product.productPicture = await getProductPicture(product.productPictures);
-      return product;
-    }).toList();
-
-    return products;
-  }
+  Future<List<dynamic>> _loadProducts() async => json.decode(await rootBundle.loadString("assets/test.json")).map((dynamic e) => Product.fromJson(e)).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -155,10 +146,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
                         future: _loadProducts(),
                         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
                           if (snapshot.hasData) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              child: ProductsList(products: snapshot.data!),
-                            );
+                            return Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: ProductsList(products: snapshot.data!));
                           } else if (snapshot.connectionState == ConnectionState.waiting) {
                             return const Center(child: CircularProgressIndicator());
                           } else {

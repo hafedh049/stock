@@ -3,7 +3,7 @@ import 'package:stock/models/product_model.dart';
 class CategoryModel {
   List<Product> products;
   String category;
-  List<int> categoryImage;
+  String categoryImage;
   int numberOfProducts;
   List<String> brands;
 
@@ -15,7 +15,7 @@ class CategoryModel {
     return CategoryModel(
       products: products,
       category: json['category'],
-      categoryImage: List<int>.from(json['category_image']),
+      categoryImage: json['category_image'],
       numberOfProducts: json['number_of_products'],
       brands: List<String>.from(json['brands']),
     );

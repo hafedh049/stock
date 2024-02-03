@@ -26,7 +26,6 @@ class _ProductCategoryState extends State<ProductCategory> {
 
   @override
   void dispose() {
-    _keys.clear();
     _tagsController.dispose();
     _kFocus.dispose();
     super.dispose();
@@ -36,7 +35,7 @@ class _ProductCategoryState extends State<ProductCategory> {
     final String jsonString = await rootBundle.loadString("assets/test.json");
     final List<dynamic> productsJson = json.decode(jsonString);
 
-    final Map<String, List<Product>> productsByCategory = {};
+    final Map<String, List<Product>> productsByCategory = <String, List<Product>>{};
 
     while (productsJson.isNotEmpty) {
       final Product product = Product.fromJson(productsJson.first);
@@ -50,20 +49,17 @@ class _ProductCategoryState extends State<ProductCategory> {
       productsJson.removeAt(0);
     }
 
-    final List<CategoryModel> categories = await Future.wait(
-      productsByCategory.entries.map(
-        (MapEntry<String, List<Product>> entry) async {
-          List<int> picture = await getProductPicture(entry.value.first.productPictures);
-          return CategoryModel(
-            products: entry.value,
-            category: entry.key,
-            categoryImage: picture,
-            numberOfProducts: entry.value.length,
-            brands: Set<String>.from(entry.value.map((Product e) => e.productBrand)).take(5).toList(),
-          );
-        },
-      ).toList(),
-    );
+    final List<CategoryModel> categories = productsByCategory.entries.map(
+      (MapEntry<String, List<Product>> entry) {
+        return CategoryModel(
+          products: entry.value,
+          category: entry.key,
+          categoryImage: "backup.png",
+          numberOfProducts: entry.value.length,
+          brands: Set<String>.from(entry.value.map((Product e) => e.productBrand)).take(5).toList(),
+        );
+      },
+    ).toList();
 
     return categories;
   }
@@ -194,7 +190,7 @@ class _ProductCategoryState extends State<ProductCategory> {
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   const SizedBox(height: 35),
-                                                  Center(child: SizedBox(width: 125, height: 125, child: Image.memory(Uint8List.fromList(category.categoryImage)))),
+                                                  Center(child: SizedBox(width: 125, height: 125, child: Image.asset(category.categoryImage))),
                                                   const SizedBox(height: 5),
                                                   Row(
                                                     children: <Widget>[
